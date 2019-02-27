@@ -29,7 +29,6 @@ public class MessageVideo extends Model<MessageVideo> {
     /**
      * 标题图片
      */
-    @TableField("titleImage")
     private String titleImage;
 
     /**
