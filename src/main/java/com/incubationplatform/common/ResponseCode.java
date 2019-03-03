@@ -5,8 +5,8 @@ package com.incubationplatform.common;
  * @date 2019/3/1 11:20
  */
 public enum ResponseCode {
-    SUCCESS(0,"SUCCESS"),
-    ERROR(1,"ERROR");
+    SUCCESS(2000,"SUCCESS"),
+    ERROR(4000,"ERROR");
     private final int code;
     private final String desc;
     ResponseCode(int code,String desc){

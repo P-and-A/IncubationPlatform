@@ -1,5 +1,7 @@
 package com.incubationplatform.common;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 /**
  * @author liaochaofan
  * @date 2019/3/1 11:04
@@ -26,6 +28,7 @@ public class ServerResponse<T> {
         this.net = net;
         this.msg = msg;
     }
+
 
     public boolean isSuccess(){
         return this.net == ResponseCode.SUCCESS.getCode();
