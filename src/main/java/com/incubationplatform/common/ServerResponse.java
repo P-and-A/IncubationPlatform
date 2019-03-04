@@ -1,6 +1,7 @@
 package com.incubationplatform.common;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author liaochaofan
@@ -29,7 +30,7 @@ public class ServerResponse<T> {
         this.msg = msg;
     }
 
-
+    @JsonIgnore
     public boolean isSuccess(){
         return this.net == ResponseCode.SUCCESS.getCode();
     }
