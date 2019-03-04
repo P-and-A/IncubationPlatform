@@ -1,0 +1,110 @@
+.MDButton{
+    float: right;
+    right: 300px;
+    background-color: #308fb3;
+}
+.main {
+    width: 950px;
+    height: auto;
+    overflow: hidden;
+    margin-top: 50px;
+}
+.hppd_title{
+    width: 300px;
+    margin: auto;
+}
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+.footer {
+    width: 100%;
+    height: auto;
+    padding: 15px 0;
+    text-align: center;
+    line-height: 24px;
+    overflow: hidden;
+}
+
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+.Login_05 {
+    border: 1px solid #131212a6;
+    width: 950px;
+    height: auto;
+    padding: 20px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 30px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+.Content_Nr {
+    width: 910px;
+    height: auto;
+    border-bottom: #bdbdbd 1px solid;
+    line-height: 35px;
+    overflow: hidden;
+}
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+table.table-itemstu {
+    text-align: center;
+    margin-left: 12px;
+    border-collapse: collapse;
+    border: 1px solid #808080;
+    width: 97%;
+}
+pre code, table {
+    background-color: transparent;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+* {
+    margin: 0 auto;
+    padding: 0;
+}
