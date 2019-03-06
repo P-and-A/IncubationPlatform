@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2019-02-28 21:01:27
+Date: 2019-03-06 16:54:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -145,7 +145,7 @@ CREATE TABLE `message` (
 -- ----------------------------
 -- Records of message
 -- ----------------------------
-INSERT INTO `message` VALUES ('123', '关于那天的疑问', '这是测试内容', null, '通知', null, null, null, '2018-11-26 20:46:38');
+INSERT INTO `message` VALUES ('123', '关于那天的疑问', '这是测试内容', null, '通知公告', null, null, null, '2018-11-26 20:46:38');
 
 -- ----------------------------
 -- Table structure for message_video
@@ -208,15 +208,21 @@ CREATE TABLE `project` (
   `planning_and_vision` text COMMENT '发展规划与创业愿景',
   `fund_and_budget` text COMMENT '项目立项经费使用预算',
   `expected_result` text COMMENT '项目预期成果',
-  `college_opinion_detail` varchar(32) DEFAULT NULL COMMENT '学院意见详情',
-  `college_opinion_handler` varchar(255) DEFAULT NULL COMMENT '学院意见处理人',
-  `college_opinion_handler_time` datetime DEFAULT NULL COMMENT '学院意见签名时间',
+  `college_opinion_detail` varchar(32) DEFAULT NULL COMMENT '学院立项意见详情',
+  `college_post_opinion_detail` varchar(32) DEFAULT NULL COMMENT '学院结项意见详情',
+  `college_opinion_handler` varchar(255) DEFAULT NULL COMMENT '学院立项意见处理人',
+  `college_post_opinion_handler` varchar(255) DEFAULT NULL COMMENT '学院结项意见处理人',
+  `college_opinion_handler_time` datetime DEFAULT NULL COMMENT '学院立项意见签名时间',
+  `college_post_opinion_handler_time` datetime DEFAULT NULL COMMENT '学院结项意见签名时间',
   `applicant_promise_detail` varchar(32) DEFAULT NULL COMMENT '申请人承诺详情',
   `applicant_promise_handler` varchar(32) DEFAULT NULL COMMENT '申请人承诺处理者',
   `applicant_promist_handing_time` datetime DEFAULT NULL COMMENT '申请人承诺处理时间',
-  `university_opinion_detail` varchar(32) DEFAULT NULL COMMENT '学校意见详情',
-  `university_opinion_handler` varchar(255) DEFAULT NULL COMMENT '学校意见处理者',
-  `university_opinion_handing_time` datetime DEFAULT NULL COMMENT '学校意见处理时间',
+  `university_opinion_detail` varchar(32) DEFAULT NULL COMMENT '学校立项意见详情',
+  `university_post_opinion_detail` varchar(32) DEFAULT NULL COMMENT '学校结项意见详情',
+  `university_opinion_handler` varchar(255) DEFAULT NULL COMMENT '学校立项意见处理者',
+  `university_post_opinion_handler` varchar(255) DEFAULT NULL COMMENT '学校结项意见处理者',
+  `university_opinion_handing_time` datetime DEFAULT NULL COMMENT '学校立项意见处理时间',
+  `university_post_opinion_handing_time` datetime DEFAULT NULL COMMENT '学校结项意见处理时间',
   `status` varchar(255) DEFAULT NULL COMMENT '审核状态',
   `change_time` datetime DEFAULT NULL COMMENT '状态修改时间',
   `support_sum` int(255) DEFAULT NULL COMMENT '资助金额',
@@ -232,7 +238,7 @@ CREATE TABLE `project` (
 -- ----------------------------
 -- Records of project
 -- ----------------------------
-INSERT INTO `project` VALUES ('5555', '8888', '创序软件工作室', '创业实践', '国家级', '这是一个工作室', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '已立项', '2018-11-28 01:44:59', '20000', '1', null, null, null, null, '2018-11-28 01:44:54');
+INSERT INTO `project` VALUES ('5555', '8888', '创序软件工作室', '创业实践', '国家级', '这是一个工作室', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '已立项', '2018-11-28 01:44:59', '20000', '1', null, null, null, null, '2018-11-28 01:44:54');
 
 -- ----------------------------
 -- Table structure for project_status_record
