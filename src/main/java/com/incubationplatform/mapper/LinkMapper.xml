@@ -6,12 +6,13 @@
     <resultMap id="BaseResultMap" type="com.incubationplatform.pojo.Link">
         <id column="id" property="id" />
         <result column="name" property="name" />
+        <result column="img" property="img" />
         <result column="url" property="url" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, url
+        id, name, img, url
     </sql>
 
 </mapper>

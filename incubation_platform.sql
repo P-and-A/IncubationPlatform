@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2019-03-06 16:54:16
+Date: 2019-03-09 17:33:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -96,6 +96,7 @@ DROP TABLE IF EXISTS `link`;
 CREATE TABLE `link` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL COMMENT '链接名',
+  `img` varchar(255) DEFAULT NULL COMMENT '链接图标',
   `url` varchar(255) DEFAULT NULL COMMENT '链接路径',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
