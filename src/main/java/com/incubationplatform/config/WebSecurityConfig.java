@@ -1,8 +1,10 @@
 package com.incubationplatform.config;
 
+import com.incubationplatform.common.MyPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -13,12 +15,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    private AnyUserDetailsService anyUserDetailsService;
-//
-//    @Autowired
-//    public void setAnyUserDetailsService(AnyUserDetailsService anyUserDetailsService){
-//        this.anyUserDetailsService = anyUserDetailsService;
-//    }
+    private AnyUserDetailsService anyUserDetailsService;
+
+    @Autowired
+    public void setAnyUserDetailsService(AnyUserDetailsService anyUserDetailsService){
+        this.anyUserDetailsService = anyUserDetailsService;
+    }
 
     /**
      * 匹配 "/" 路径，不需要权限即可访问
@@ -31,12 +33,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/home/**").permitAll()
-                .antMatchers("/user/**").hasRole("USER")
+                .antMatchers("/student").permitAll()
+                .antMatchers("/home/**").hasRole("USER")
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/user")
+                .formLogin().loginPage("/student/login").defaultSuccessUrl("/home")
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/login");
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/student/login");
     }
 
     /**
@@ -44,7 +46,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception{
-//        builder.userDetailsService(anyUserDetailsService);
+        builder.userDetailsService(anyUserDetailsService).passwordEncoder(new MyPasswordEncoder());
 //        authenticationManager();
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        super.configure(web);
     }
 }
