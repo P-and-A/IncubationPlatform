@@ -10,7 +10,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author lcf
- * @since 2019-02-28
+ * @since 2019-03-06
  */
 public class Project extends Model<Project> {
 
@@ -94,19 +94,34 @@ public class Project extends Model<Project> {
     private String expectedResult;
 
     /**
-     * 学院意见详情
+     * 学院立项意见详情
      */
     private String collegeOpinionDetail;
 
     /**
-     * 学院意见处理人
+     * 学院结项意见详情
+     */
+    private String collegePostOpinionDetail;
+
+    /**
+     * 学院立项意见处理人
      */
     private String collegeOpinionHandler;
 
     /**
-     * 学院意见签名时间
+     * 学院结项意见处理人
+     */
+    private String collegePostOpinionHandler;
+
+    /**
+     * 学院立项意见签名时间
      */
     private LocalDateTime collegeOpinionHandlerTime;
+
+    /**
+     * 学院结项意见签名时间
+     */
+    private LocalDateTime collegePostOpinionHandlerTime;
 
     /**
      * 申请人承诺详情
@@ -124,19 +139,34 @@ public class Project extends Model<Project> {
     private LocalDateTime applicantPromistHandingTime;
 
     /**
-     * 学校意见详情
+     * 学校立项意见详情
      */
     private String universityOpinionDetail;
 
     /**
-     * 学校意见处理者
+     * 学校结项意见详情
+     */
+    private String universityPostOpinionDetail;
+
+    /**
+     * 学校立项意见处理者
      */
     private String universityOpinionHandler;
 
     /**
-     * 学校意见处理时间
+     * 学校结项意见处理者
+     */
+    private String universityPostOpinionHandler;
+
+    /**
+     * 学校立项意见处理时间
      */
     private LocalDateTime universityOpinionHandingTime;
+
+    /**
+     * 学校结项意见处理时间
+     */
+    private LocalDateTime universityPostOpinionHandingTime;
 
     /**
      * 审核状态
@@ -320,6 +350,14 @@ public class Project extends Model<Project> {
         this.collegeOpinionDetail = collegeOpinionDetail;
     }
 
+    public String getCollegePostOpinionDetail() {
+        return collegePostOpinionDetail;
+    }
+
+    public void setCollegePostOpinionDetail(String collegePostOpinionDetail) {
+        this.collegePostOpinionDetail = collegePostOpinionDetail;
+    }
+
     public String getCollegeOpinionHandler() {
         return collegeOpinionHandler;
     }
@@ -328,12 +366,28 @@ public class Project extends Model<Project> {
         this.collegeOpinionHandler = collegeOpinionHandler;
     }
 
+    public String getCollegePostOpinionHandler() {
+        return collegePostOpinionHandler;
+    }
+
+    public void setCollegePostOpinionHandler(String collegePostOpinionHandler) {
+        this.collegePostOpinionHandler = collegePostOpinionHandler;
+    }
+
     public LocalDateTime getCollegeOpinionHandlerTime() {
         return collegeOpinionHandlerTime;
     }
 
     public void setCollegeOpinionHandlerTime(LocalDateTime collegeOpinionHandlerTime) {
         this.collegeOpinionHandlerTime = collegeOpinionHandlerTime;
+    }
+
+    public LocalDateTime getCollegePostOpinionHandlerTime() {
+        return collegePostOpinionHandlerTime;
+    }
+
+    public void setCollegePostOpinionHandlerTime(LocalDateTime collegePostOpinionHandlerTime) {
+        this.collegePostOpinionHandlerTime = collegePostOpinionHandlerTime;
     }
 
     public String getApplicantPromiseDetail() {
@@ -368,6 +422,14 @@ public class Project extends Model<Project> {
         this.universityOpinionDetail = universityOpinionDetail;
     }
 
+    public String getUniversityPostOpinionDetail() {
+        return universityPostOpinionDetail;
+    }
+
+    public void setUniversityPostOpinionDetail(String universityPostOpinionDetail) {
+        this.universityPostOpinionDetail = universityPostOpinionDetail;
+    }
+
     public String getUniversityOpinionHandler() {
         return universityOpinionHandler;
     }
@@ -376,12 +438,28 @@ public class Project extends Model<Project> {
         this.universityOpinionHandler = universityOpinionHandler;
     }
 
+    public String getUniversityPostOpinionHandler() {
+        return universityPostOpinionHandler;
+    }
+
+    public void setUniversityPostOpinionHandler(String universityPostOpinionHandler) {
+        this.universityPostOpinionHandler = universityPostOpinionHandler;
+    }
+
     public LocalDateTime getUniversityOpinionHandingTime() {
         return universityOpinionHandingTime;
     }
 
     public void setUniversityOpinionHandingTime(LocalDateTime universityOpinionHandingTime) {
         this.universityOpinionHandingTime = universityOpinionHandingTime;
+    }
+
+    public LocalDateTime getUniversityPostOpinionHandingTime() {
+        return universityPostOpinionHandingTime;
+    }
+
+    public void setUniversityPostOpinionHandingTime(LocalDateTime universityPostOpinionHandingTime) {
+        this.universityPostOpinionHandingTime = universityPostOpinionHandingTime;
     }
 
     public String getStatus() {
@@ -490,9 +568,15 @@ public class Project extends Model<Project> {
 
     public static final String COLLEGE_OPINION_DETAIL = "college_opinion_detail";
 
+    public static final String COLLEGE_POST_OPINION_DETAIL = "college_post_opinion_detail";
+
     public static final String COLLEGE_OPINION_HANDLER = "college_opinion_handler";
 
+    public static final String COLLEGE_POST_OPINION_HANDLER = "college_post_opinion_handler";
+
     public static final String COLLEGE_OPINION_HANDLER_TIME = "college_opinion_handler_time";
+
+    public static final String COLLEGE_POST_OPINION_HANDLER_TIME = "college_post_opinion_handler_time";
 
     public static final String APPLICANT_PROMISE_DETAIL = "applicant_promise_detail";
 
@@ -502,9 +586,15 @@ public class Project extends Model<Project> {
 
     public static final String UNIVERSITY_OPINION_DETAIL = "university_opinion_detail";
 
+    public static final String UNIVERSITY_POST_OPINION_DETAIL = "university_post_opinion_detail";
+
     public static final String UNIVERSITY_OPINION_HANDLER = "university_opinion_handler";
 
+    public static final String UNIVERSITY_POST_OPINION_HANDLER = "university_post_opinion_handler";
+
     public static final String UNIVERSITY_OPINION_HANDING_TIME = "university_opinion_handing_time";
+
+    public static final String UNIVERSITY_POST_OPINION_HANDING_TIME = "university_post_opinion_handing_time";
 
     public static final String STATUS = "status";
 
@@ -549,14 +639,20 @@ public class Project extends Model<Project> {
         ", fundAndBudget=" + fundAndBudget +
         ", expectedResult=" + expectedResult +
         ", collegeOpinionDetail=" + collegeOpinionDetail +
+        ", collegePostOpinionDetail=" + collegePostOpinionDetail +
         ", collegeOpinionHandler=" + collegeOpinionHandler +
+        ", collegePostOpinionHandler=" + collegePostOpinionHandler +
         ", collegeOpinionHandlerTime=" + collegeOpinionHandlerTime +
+        ", collegePostOpinionHandlerTime=" + collegePostOpinionHandlerTime +
         ", applicantPromiseDetail=" + applicantPromiseDetail +
         ", applicantPromiseHandler=" + applicantPromiseHandler +
         ", applicantPromistHandingTime=" + applicantPromistHandingTime +
         ", universityOpinionDetail=" + universityOpinionDetail +
+        ", universityPostOpinionDetail=" + universityPostOpinionDetail +
         ", universityOpinionHandler=" + universityOpinionHandler +
+        ", universityPostOpinionHandler=" + universityPostOpinionHandler +
         ", universityOpinionHandingTime=" + universityOpinionHandingTime +
+        ", universityPostOpinionHandingTime=" + universityPostOpinionHandingTime +
         ", status=" + status +
         ", changeTime=" + changeTime +
         ", supportSum=" + supportSum +

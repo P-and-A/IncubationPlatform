@@ -21,14 +21,20 @@
         <result column="fund_and_budget" property="fundAndBudget" />
         <result column="expected_result" property="expectedResult" />
         <result column="college_opinion_detail" property="collegeOpinionDetail" />
+        <result column="college_post_opinion_detail" property="collegePostOpinionDetail" />
         <result column="college_opinion_handler" property="collegeOpinionHandler" />
+        <result column="college_post_opinion_handler" property="collegePostOpinionHandler" />
         <result column="college_opinion_handler_time" property="collegeOpinionHandlerTime" />
+        <result column="college_post_opinion_handler_time" property="collegePostOpinionHandlerTime" />
         <result column="applicant_promise_detail" property="applicantPromiseDetail" />
         <result column="applicant_promise_handler" property="applicantPromiseHandler" />
         <result column="applicant_promist_handing_time" property="applicantPromistHandingTime" />
         <result column="university_opinion_detail" property="universityOpinionDetail" />
+        <result column="university_post_opinion_detail" property="universityPostOpinionDetail" />
         <result column="university_opinion_handler" property="universityOpinionHandler" />
+        <result column="university_post_opinion_handler" property="universityPostOpinionHandler" />
         <result column="university_opinion_handing_time" property="universityOpinionHandingTime" />
+        <result column="university_post_opinion_handing_time" property="universityPostOpinionHandingTime" />
         <result column="status" property="status" />
         <result column="change_time" property="changeTime" />
         <result column="support_sum" property="supportSum" />
@@ -42,7 +48,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, match_id, name, classification, grade, introduce, background, advantage, market_analysis, technical_factor, business_model, financial_analysis, risk_and_constraint, planning_and_vision, fund_and_budget, expected_result, college_opinion_detail, college_opinion_handler, college_opinion_handler_time, applicant_promise_detail, applicant_promise_handler, applicant_promist_handing_time, university_opinion_detail, university_opinion_handler, university_opinion_handing_time, status, change_time, support_sum, is_enable, subject_code, award_id, qq, deadline_time, create_time
+        id, match_id, name, classification, grade, introduce, background, advantage, market_analysis, technical_factor, business_model, financial_analysis, risk_and_constraint, planning_and_vision, fund_and_budget, expected_result, college_opinion_detail, college_post_opinion_detail, college_opinion_handler, college_post_opinion_handler, college_opinion_handler_time, college_post_opinion_handler_time, applicant_promise_detail, applicant_promise_handler, applicant_promist_handing_time, university_opinion_detail, university_post_opinion_detail, university_opinion_handler, university_post_opinion_handler, university_opinion_handing_time, university_post_opinion_handing_time, status, change_time, support_sum, is_enable, subject_code, award_id, qq, deadline_time, create_time
     </sql>
 
 </mapper>

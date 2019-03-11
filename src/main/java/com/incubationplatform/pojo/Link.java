@@ -9,7 +9,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author lcf
- * @since 2019-02-28
+ * @since 2019-03-09
  */
 public class Link extends Model<Link> {
 
@@ -21,6 +21,11 @@ public class Link extends Model<Link> {
      * 链接名
      */
     private String name;
+
+    /**
+     * 链接图标
+     */
+    private String img;
 
     /**
      * 链接路径
@@ -44,6 +49,14 @@ public class Link extends Model<Link> {
         this.name = name;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public String getUrl() {
         return url;
     }
@@ -55,6 +68,8 @@ public class Link extends Model<Link> {
     public static final String ID = "id";
 
     public static final String NAME = "name";
+
+    public static final String IMG = "img";
 
     public static final String URL = "url";
 
@@ -68,6 +83,7 @@ public class Link extends Model<Link> {
         return "Link{" +
         "id=" + id +
         ", name=" + name +
+        ", img=" + img +
         ", url=" + url +
         "}";
     }

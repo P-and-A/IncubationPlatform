@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * <p>
@@ -31,6 +32,12 @@ public class StudentController {
         ServerResponse serverResponse=iStudentService.getStudentById(user.getId());
         return serverResponse;
     }
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+
 
     @RequestMapping("/person/submit")
     public ServerResponse updateUserInfo(Student student){
