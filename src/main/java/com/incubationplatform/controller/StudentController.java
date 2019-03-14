@@ -43,15 +43,15 @@ public class StudentController {
     public ServerResponse updateUserInfo(Student student){
         Student user = (Student) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         student.setId(user.getId());
-        iStudentService.updateStudentInfo(student);
-        return null;
+        ServerResponse serverResponse=iStudentService.updateStudentInfo(student);
+        return serverResponse;
     }
 
     @RequestMapping("/student/change_password")
     public ServerResponse updateUserPassword(String newPassword,String oldPassword){
         Student user = (Student) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        iStudentService.updatePassword(user,newPassword,oldPassword);
-        return null;
+        ServerResponse serverResponse=iStudentService.updatePassword(user,newPassword,oldPassword);
+        return serverResponse;
     }
 }
 
