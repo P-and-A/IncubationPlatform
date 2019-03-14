@@ -29,8 +29,17 @@ public class Const {
             return status;
         }
     }
+    public interface ProjectClassification{
+        String EXCELLENT_INNOVATE = "创新训练";
+        String EXCELLENT_VENTURE = "创业训练";
+        String EXCELLENT_PRACTICE = "创业实践";
+
+    }
+
     public interface MessageClassification{
         String ANNOUNCEMENTS = "通知公告";
+        String CHARACTER_STYLE = "创业人物风采";
+        String NEW = "新闻动态";
     }
 
 }

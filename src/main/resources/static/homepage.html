@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link href="css/homepage.css" rel="stylesheet">
@@ -337,59 +337,15 @@
                     <div class="message-title text">
                         创业年会
                     </div>
-                    <div class="all-content">
-                        <div class="container-fluid">
+                    <div class="all-content" id="videoVue">
+                        <div class="container-fluid" v-for="n in 3">
                             <div class="row news-margin">
-                                <div class="col-md-6">
+                                <div class="col-md-6" v-for="(item,index) in partVideoList(n,2)">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <img class="news-img" src="img/news.jpg">
+                                            <img class="news-img" v-bind:src="item.titleImage">
                                         </div>
-                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <img class="news-img" src="img/news.jpg">
-                                        </div>
-                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row news-margin">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <img class="news-img" src="img/news.jpg">
-                                        </div>
-                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <img class="news-img" src="img/news.jpg">
-                                        </div>
-                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row news-margin">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <img class="news-img" src="img/news.jpg">
-                                        </div>
-                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <img class="news-img" src="img/news.jpg">
-                                        </div>
-                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
+                                        <div class="col-md-6">{{item.title|abbreviationContent}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -646,39 +602,15 @@
 </div>
 <br>
 <br>
-<div class="container-fluid" style="margin-left: 2%">
+<div class="container-fluid" style="margin-left: 2%" id="talentVue">
     <div class="row">
         <div class="message-title text" style="margin-bottom: 30px">
             <img src="img/cyrw-title.PNG">
         </div>
-        <div class="col-md-2">
-            <img class="cxrw-img" src="img/cxrw-img1.jpg">
+        <div class="col-md-2" v-for="(item,index) in partTalent">
+            <img class="cxrw-img" v-bind:src="item.titleImage">
             <div class="cxrw-text1">
-                汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。
-            </div>
-        </div>
-        <div class="col-md-2">
-            <img class="cxrw-img" src="img/cxrw-img1.jpg">
-            <div class="cxrw-text1">
-                汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。
-            </div>
-        </div>
-        <div class="col-md-2">
-            <img class="cxrw-img" src="img/cxrw-img1.jpg">
-            <div class="cxrw-text1">
-                汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。
-            </div>
-        </div>
-        <div class="col-md-2">
-            <img class="cxrw-img" src="img/cxrw-img1.jpg">
-            <div class="cxrw-text1">
-                汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。
-            </div>
-        </div>
-        <div class="col-md-2">
-            <img class="cxrw-img" src="img/cxrw-img1.jpg">
-            <div class="cxrw-text1">
-                汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。
+                {{abbreviationContent(index)}}
             </div>
         </div>
         <div class="cxrw-more">
@@ -703,6 +635,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+<!--引进vue-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <script type="text/javascript">
 
@@ -749,5 +683,190 @@
 
 </script>
 
+
+<!--创业人物风采-->
+<script>
+
+    // $.ajax({
+    //     url:"",
+    //     method:"POST",
+    //     success:function (data) {
+    //         talent=data
+    //     }
+    // });
+
+    var talent=[{
+        id:"1",
+        title:"华晨宇的火星梦",
+        content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+        source:"百度百科",
+        classification:"talent",
+        titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+    },
+        {
+            id:"1",
+            title:"华晨宇的火星梦",
+            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+            source:"百度百科",
+            classification:"talent",
+            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+        },
+        {
+            id:"1",
+            title:"华晨宇的火星梦",
+            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+            source:"百度百科",
+            classification:"talent",
+            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+        },
+        {
+            id:"1",
+            title:"华晨宇的火星梦",
+            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+            source:"百度百科",
+            classification:"talent",
+            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+        },
+        {
+            id:"1",
+            title:"华晨宇的火星梦",
+            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+            source:"百度百科",
+            classification:"talent",
+            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+        },
+        {
+            id:"1",
+            title:"华晨宇的火星梦",
+            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+            source:"百度百科",
+            classification:"talent",
+            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+        },
+        {
+            id:"1",
+            title:"华晨宇的火星梦",
+            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+            source:"百度百科",
+            classification:"talent",
+            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+        }];
+    var talentVue=new Vue({
+        el: '#talentVue',
+        data: {
+            talent:talent
+        },
+        computed:{
+          partTalent:function () {
+              if (this.talent.length>5){
+                  return this.talent.slice(0,5);
+              } else {
+                  return talent;
+              }
+          }
+        },
+        methods: {
+            abbreviationContent: function (index) {
+                    var content =this.talent[index].content;
+                    console.log(content)
+                    if (content.length>40){
+                        return (content.slice(0,40)).concat("......");
+                    }else {
+                        return content;
+                    }
+            }
+        }
+    })
+</script>
+
+
+<!--创业年会-->
+<script>
+    var videoList=[{
+        id:"1",
+        title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
+        content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+        source:"百度百科",
+        createTime:"2016-4-5 14:15:00",
+        titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+    },
+        {
+            id:"1",
+            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
+            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+            source:"百度百科",
+            createTime:"2016-4-5 14:15:00",
+            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+        },
+        {
+            id:"1",
+            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
+            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+            source:"百度百科",
+            createTime:"2016-4-5 14:15:00",
+            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+        },
+        {
+            id:"1",
+            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
+            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+            source:"百度百科",
+            createTime:"2016-4-5 14:15:00",
+            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+        },
+        {
+            id:"1",
+            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
+            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+            source:"百度百科",
+            createTime:"2016-4-5 14:15:00",
+            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+        },
+        {
+            id:"1",
+            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
+            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+            source:"百度百科",
+            createTime:"2016-4-5 14:15:00",
+            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+        },
+        {
+            id:"1",
+            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
+            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+            source:"百度百科",
+            createTime:"2016-4-5 14:15:00",
+            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+        },
+        {
+            id:"1",
+            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
+            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
+            source:"百度百科",
+            createTime:"2016-4-5 14:15:00",
+            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
+        }];
+
+    var videoVue=new Vue({
+        el: '#videoVue',
+        filters: {
+            abbreviationContent: function (title) {
+                if (title.length > 20) {
+                    return (title.slice(0, 20)).concat("......");
+                } else {
+                    return title;
+                }
+            }
+        },
+        data: {
+            videoList:videoList
+        },
+        methods:{
+            partVideoList:function (index,Offset) {
+                return this.videoList.slice(index*Offset-2,index*Offset)
+            },
+        }
+    })
+</script>
 </body>
 </html>

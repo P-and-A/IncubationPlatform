@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p>
@@ -25,9 +26,17 @@ public class ColleageController {
     private IProjectService iProjectService;
 
     @RequestMapping("/{adminId}/save_review_status")
+    @ResponseBody
     public ServerResponse reviewProject(Integer projectId,@PathVariable Integer adminId, String opinion, Integer status){
         return iProjectService.reviewProject(projectId, adminId, opinion, status);
     }
+
+
+
+//    @RequestMapping("{adminId}/project")
+//    public String
+
+
 
 }
 
