@@ -112,7 +112,7 @@
                                         创新训练项目
                                         </thead>
                                         <tbody>
-                                        <tr v-for="(CXXLProject,index) in CXXLProjects " v-if="index<5">
+                                        <tr v-for="(CXXLProject,index) in CXXLProjects " v-if="index<5"  @click="getCXXLLXId(project.id)>
                                             <td>
                                                 <a href="hpMessageDetail.html">
                                                     {{CXXLProject.name}}
@@ -133,7 +133,7 @@
                                         创业训练项目
                                         </thead>
                                         <tbody>
-                                        <tr v-for="(CYXLProject,index) in CYXLProjects" v-if="index<5">
+                                        <tr v-for="(CYXLProject,index) in CYXLProjects" v-if="index<5" @click="getCYXLLXId(project.id)">
                                             <td>
                                                 <a href="hpMessageDetail.html">
                                                     {{CYXLProject.name}}
@@ -154,7 +154,7 @@
                                         创业实践项目
                                         </thead>
                                         <tbody>
-                                        <tr v-for="(CYSJProject,index) in CYSJProjects "v-if="index<5">
+                                        <tr v-for="(CYSJProject,index) in CYSJProjects "v-if="index<5"  @click="getCYSJLXId(project.id)">
                                             <td>
                                                 <a href="hpMessageDetail.html">
                                                     {{CYSJProject.name}}
@@ -393,7 +393,7 @@
                                 创新训练项目
                                 </thead>
                                 <tbody>
-                                <tr v-for="(CXXLProject_jx,index) in CXXLProjects_jx " v-if="index<5">
+                                <tr v-for="(CXXLProject_jx,index) in CXXLProjects_jx " v-if="index<5"  @click="getCXXLJXId(project.id)">
                                     <td>
                                         <a href="hpMessageDetail.html">
                                             {{CXXLProject_jx.name}}
@@ -409,15 +409,15 @@
                             </table>
                         </div>
                         <div class="project-size project-font col-xs-6 col-md-4">
-                            <table class="table border">
+                            <table class="table border" id="CYXLTitle_jx">
                                 <thead>
                                 创业训练项目
                                 </thead>
                                 <tbody>
-                                <tr v-for="(CYXLProject-jx,index) in CYXLProjects-jx " v-if="index<5">
+                                <tr v-for="(CYXLProjects_jx,index) in CYXLProjects_jx " v-if="index<5"  @click="getCYXLJXId(project.id)">
                                     <td>
                                         <a href="hpMessageDetail.html">
-                                            {{CYXLProject-jx.name}}
+                                            {{CYXLProjects_jx.name}}
                                         </a>
                                     </td>
                                 </tr>
@@ -430,15 +430,15 @@
                             </table>
                         </div>
                         <div class="project-size project-font col-xs-6 col-md-4">
-                            <table class="table border">
+                            <table class="table border" id="CYSJTitle_jx">
                                 <thead>
                                 创新训练项目
                                 </thead>
                                 <tbody>
-                                <tr v-for="(CYSJProject-jx,index) in CYSJProjects-jx " v-if="index<5">
+                                <tr v-for="(CYSJProjects_jx,index) in CYSJProjects_jx " v-if="index<5"  @click="getCYSJJXId(project.id)">
                                     <td>
                                         <a href="hpMessageDetail.html">
-                                            {{CYSJProject-jx.name}}
+                                            {{CYSJProjects_jx.name}}
                                         </a>
                                     </td>
                                 </tr>
