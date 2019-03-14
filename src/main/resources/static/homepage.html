@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link href="css/homepage.css" rel="stylesheet">
+    <link href="css/all.css" rel="stylesheet">
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -61,7 +62,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-9" style="left: 10%;">
+        <div class="col-md-8" style="left: 10%;">
             <div class="tab-content content">
                 <div class="tab-pane active" id="profile">
                     <div class="profile-title text">
@@ -80,61 +81,19 @@
                     <div class="message-title text">
                         通知公告
                     </div>
-                    <div class="all-content">
-                        <table class="table table-hover">
+                    <div class="all-content" id="message1">
+                        <table class="table table-hover" >
                             <tbody>
-                            <!--<tr v-for="message">-->
-                            <!--<template v-if="message.classification==1">-->
-                            <!--<td><a href="hpDetailMessage.html"> {{message.title}}</a></td>-->
-                            <!--<td>&nbsp;&nbsp;&nbsp;</td>-->
-                            <!--<td>{{message.createTime|formatDate}}</td>-->
-                            <!--</template>-->
-                            <!--</tr>-->
-                            <tr>
-                                <td>
-                                    关于2019年创新创业大赛报名通知
-                                </td>
-                                <td>
-                                    2019年2月25日
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    关于2019年创新创业大赛报名通知
-                                </td>
-                                <td>
-                                    2019年2月25日
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    关于2019年创新创业大赛报名通知
-                                </td>
-                                <td>
-                                    2019年2月25日
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    关于2019年创新创业大赛报名通知
-                                </td>
-                                <td>
-                                    2019年2月25日
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    关于2019年创新创业大赛报名通知
-                                </td>
-                                <td>
-                                    2019年2月25日
-                                </td>
+                            <template>
+                            <tr v-for="(message,index) in message" v-if="index<5"  @click="getMessageId(message.id)">
+                            <td><a href="hpMessageDetail.html"> {{message.title}}</a></td>
+                            <td>&nbsp;&nbsp;&nbsp;</td>
+                            <td>{{message.createTime|formatDate}}</td>
                             </tr>
                             <tr style="text-align: center">
-                                <a href="">
-                                    <td>更多...</td>
-                                </a>
+                                <td><a href="">更多...</a></td>
                             </tr>
+                            </template>
                             </tbody>
                         </table>
                     </div>
@@ -148,117 +107,63 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="project-size project-font col-xs-6 col-md-4">
-                                    <table class="table border">
+                                    <table class="table border" id="CXXLTitle">
                                         <thead>
                                         创新训练项目
                                         </thead>
                                         <tbody>
-                                        <tr>
+                                        <tr v-for="(CXXLProject,index) in CXXLProjects " v-if="index<5">
                                             <td>
-                                                创序软件工作室
+                                                <a href="hpMessageDetail.html">
+                                                    {{CXXLProject.name}}
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                创序软件工作室
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                创序软件工作室
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                创序软件工作室
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                创序软件工作室
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                ...
+                                               <a href=""> ...</a>
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="project-size project-font col-xs-6 col-md-4">
-                                    <table class="table border">
+                                    <table class="table border" id="CYXLTitle">
                                         <thead>
-                                        创新训练项目
+                                        创业训练项目
                                         </thead>
                                         <tbody>
-                                        <tr>
+                                        <tr v-for="(CYXLProject,index) in CYXLProjects" v-if="index<5">
                                             <td>
-                                                创序软件工作室
+                                                <a href="hpMessageDetail.html">
+                                                    {{CYXLProject.name}}
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                创序软件工作室
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                创序软件工作室
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                创序软件工作室
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                创序软件工作室
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                ...
+                                                <a href="">...</a>
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="project-size project-font col-xs-6 col-md-4">
-                                    <table class="table border">
+                                    <table class="table border" id="CYSJTitle">
                                         <thead>
-                                        创新训练项目
+                                        创业实践项目
                                         </thead>
                                         <tbody>
-                                        <tr>
+                                        <tr v-for="(CYSJProject,index) in CYSJProjects "v-if="index<5">
                                             <td>
-                                                创序软件工作室
+                                                <a href="hpMessageDetail.html">
+                                                    {{CYSJProject.name}}
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                创序软件工作室
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                创序软件工作室
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                创序软件工作室
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                创序软件工作室
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                ...
+                                               <a href=""> ...</a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -273,6 +178,71 @@
                     <div class="message-title text">
                         新闻动态
                     </div>
+
+                    <div class="all-content">
+                        <div class="container">
+                            <div class="row news-margin">
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="news-img" src="img/news.jpg">
+                                        </div>
+                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="news-img" src="img/news.jpg">
+                                        </div>
+                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row news-margin">
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="news-img" src="img/news.jpg">
+                                        </div>
+                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="news-img" src="img/news.jpg">
+                                        </div>
+                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row news-margin">
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="news-img" src="img/news.jpg">
+                                        </div>
+                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img class="news-img" src="img/news.jpg">
+                                        </div>
+                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="annual">
+                    <div class="message-title text">
+                        创业年会
+                    </div>
                     <div class="all-content">
                         <div class="container-fluid">
                             <div class="row news-margin">
@@ -326,26 +296,6 @@
                                             <img class="news-img" src="img/news.jpg">
                                         </div>
                                         <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane" id="annual">
-                    <div class="message-title text">
-                        创业年会
-                    </div>
-                    <div class="all-content" id="videoVue">
-                        <div class="container-fluid" v-for="n in 3">
-                            <div class="row news-margin">
-                                <div class="col-md-6" v-for="(item,index) in partVideoList(n,2)">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <img class="news-img" v-bind:src="item.titleImage">
-                                        </div>
-                                        <div class="col-md-6">{{item.title|abbreviationContent}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -438,39 +388,42 @@
                 <div class="container">
                     <div class="row" style="width: 700px;">
                         <div class="project-size project-font col-xs-6 col-md-4">
-                            <table class="table border">
+                            <table class="table border" id="CXXLTitle_jx">
                                 <thead>
                                 创新训练项目
                                 </thead>
                                 <tbody>
-                                <tr>
+                                <tr v-for="(CXXLProject_jx,index) in CXXLProjects_jx " v-if="index<5">
                                     <td>
-                                        创序软件工作室
+                                        <a href="hpMessageDetail.html">
+                                            {{CXXLProject_jx.name}}
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        创序软件工作室
+                                        <a href="">...</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="project-size project-font col-xs-6 col-md-4">
+                            <table class="table border">
+                                <thead>
+                                创业训练项目
+                                </thead>
+                                <tbody>
+                                <tr v-for="(CYXLProject-jx,index) in CYXLProjects-jx " v-if="index<5">
+                                    <td>
+                                        <a href="hpMessageDetail.html">
+                                            {{CYXLProject-jx.name}}
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        创序软件工作室
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        创序软件工作室
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        创序软件工作室
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        ...
+                                        <a href="">...</a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -482,73 +435,16 @@
                                 创新训练项目
                                 </thead>
                                 <tbody>
-                                <tr>
+                                <tr v-for="(CYSJProject-jx,index) in CYSJProjects-jx " v-if="index<5">
                                     <td>
-                                        创序软件工作室
+                                        <a href="hpMessageDetail.html">
+                                            {{CYSJProject-jx.name}}
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        创序软件工作室
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        创序软件工作室
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        创序软件工作室
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        创序软件工作室
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        ...
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="project-size project-font col-xs-6 col-md-4">
-                            <table class="table border">
-                                <thead>
-                                创新训练项目
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        创序软件工作室
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        创序软件工作室
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        创序软件工作室
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        创序软件工作室
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        创序软件工作室
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        ...
+                                        <a href="">...</a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -602,22 +498,40 @@
 </div>
 <br>
 <br>
-<div class="container-fluid" style="margin-left: 2%" id="talentVue">
-    <div class="row">
-        <div class="message-title text" style="margin-bottom: 30px">
-            <img src="img/cyrw-title.PNG">
-        </div>
-        <div class="col-md-2" v-for="(item,index) in partTalent">
-            <img class="cxrw-img" v-bind:src="item.titleImage">
-            <div class="cxrw-text1">
-                {{abbreviationContent(index)}}
-            </div>
-        </div>
-        <div class="cxrw-more">
-            <a href=""><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>&nbsp;&nbsp;更多</a>
+<div class="message-title text" style="margin-bottom: 30px">
+    <img src="img/cyrw-title.PNG">
+</div>
+
+<div class="cyrw-content">
+    <div class="cyrw">
+        <img class="cxrw-img" src="img/cxrw-img1.jpg">
+        <div class="cxrw-text1">
+            汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。
         </div>
     </div>
+    <div class="cyrw">
+        <img class="cxrw-img" src="img/cxrw-img1.jpg">
+        <div class="cxrw-text1">
+            汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。
+        </div>
+    </div>
+    <div class="cyrw">
+        <img class="cxrw-img" src="img/cxrw-img1.jpg">
+        <div class="cxrw-text1">
+            汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。
+        </div>
+    </div>
+    <div class="cyrw">
+        <img class="cxrw-img" src="img/cxrw-img1.jpg">
+        <div class="cxrw-text1">
+            汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。
+        </div>
+    </div>
+    <div class="cxrw-more cyrw">
+        <a href=""><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>&nbsp;&nbsp;更多</a>
+    </div>
 </div>
+
 <br><br><br><br><br><br>
 <footer style="background-color: cadetblue ;text-align: center">
     <p>
@@ -630,243 +544,15 @@
         联系电话：123456789
     </p>
 </footer>
+
+
 <script src="js/jquery-3.3.1.min.js"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-<!--引进vue-->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script  src="js/homepage.js"></script>
 
-<script type="text/javascript">
-
-    /*
-    大图背景自适应
-     */
-    $(function () {
-        var mydiv = $("#jumbotron-img");
-        var mydiv_resize = function () {
-            $(mydiv).css("width", $(window).width());
-        };
-        mydiv_resize();
-        $(window).resize(function () {
-            mydiv_resize();
-        });
-    });
-
-    // /*
-    // 通知通告
-    //  */
-    // var example1, message;
-    // $.ajax({
-    //     url: '/visitor/message',
-    //     type: 'get',
-    //     success: function (response) {
-    //         message = response.data;
-    //         example1 = new Vue({
-    //             el: '#message1',
-    //             data: {
-    //                 message: message,
-    //             },
-    //             filters: {
-    //                 formatDate(time) {
-    //                     var date = new Date(time);
-    //                     return formatDate(date, 'yyyy-MM-dd');
-    //                 }
-    //             },
-    //
-    //         });
-    //         return;
-    //     }
-    // });
-
-
-</script>
-
-
-<!--创业人物风采-->
-<script>
-
-    // $.ajax({
-    //     url:"",
-    //     method:"POST",
-    //     success:function (data) {
-    //         talent=data
-    //     }
-    // });
-
-    var talent=[{
-        id:"1",
-        title:"华晨宇的火星梦",
-        content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-        source:"百度百科",
-        classification:"talent",
-        titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-    },
-        {
-            id:"1",
-            title:"华晨宇的火星梦",
-            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-            source:"百度百科",
-            classification:"talent",
-            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-        },
-        {
-            id:"1",
-            title:"华晨宇的火星梦",
-            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-            source:"百度百科",
-            classification:"talent",
-            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-        },
-        {
-            id:"1",
-            title:"华晨宇的火星梦",
-            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-            source:"百度百科",
-            classification:"talent",
-            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-        },
-        {
-            id:"1",
-            title:"华晨宇的火星梦",
-            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-            source:"百度百科",
-            classification:"talent",
-            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-        },
-        {
-            id:"1",
-            title:"华晨宇的火星梦",
-            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-            source:"百度百科",
-            classification:"talent",
-            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-        },
-        {
-            id:"1",
-            title:"华晨宇的火星梦",
-            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-            source:"百度百科",
-            classification:"talent",
-            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-        }];
-    var talentVue=new Vue({
-        el: '#talentVue',
-        data: {
-            talent:talent
-        },
-        computed:{
-          partTalent:function () {
-              if (this.talent.length>5){
-                  return this.talent.slice(0,5);
-              } else {
-                  return talent;
-              }
-          }
-        },
-        methods: {
-            abbreviationContent: function (index) {
-                    var content =this.talent[index].content;
-                    console.log(content)
-                    if (content.length>40){
-                        return (content.slice(0,40)).concat("......");
-                    }else {
-                        return content;
-                    }
-            }
-        }
-    })
-</script>
-
-
-<!--创业年会-->
-<script>
-    var videoList=[{
-        id:"1",
-        title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
-        content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-        source:"百度百科",
-        createTime:"2016-4-5 14:15:00",
-        titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-    },
-        {
-            id:"1",
-            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
-            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-            source:"百度百科",
-            createTime:"2016-4-5 14:15:00",
-            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-        },
-        {
-            id:"1",
-            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
-            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-            source:"百度百科",
-            createTime:"2016-4-5 14:15:00",
-            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-        },
-        {
-            id:"1",
-            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
-            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-            source:"百度百科",
-            createTime:"2016-4-5 14:15:00",
-            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-        },
-        {
-            id:"1",
-            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
-            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-            source:"百度百科",
-            createTime:"2016-4-5 14:15:00",
-            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-        },
-        {
-            id:"1",
-            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
-            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-            source:"百度百科",
-            createTime:"2016-4-5 14:15:00",
-            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-        },
-        {
-            id:"1",
-            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
-            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-            source:"百度百科",
-            createTime:"2016-4-5 14:15:00",
-            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-        },
-        {
-            id:"1",
-            title:"华晨宇的火星梦(祝贺华晨宇同学登上了火星，踏出了人类的一大步)",
-            content:"汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。",
-            source:"百度百科",
-            createTime:"2016-4-5 14:15:00",
-            titleImage:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=2290b445ad86c9171c0e5a6ba8541baa/7af40ad162d9f2d3e0767452a3ec8a136327cc2c.jpg",
-        }];
-
-    var videoVue=new Vue({
-        el: '#videoVue',
-        filters: {
-            abbreviationContent: function (title) {
-                if (title.length > 20) {
-                    return (title.slice(0, 20)).concat("......");
-                } else {
-                    return title;
-                }
-            }
-        },
-        data: {
-            videoList:videoList
-        },
-        methods:{
-            partVideoList:function (index,Offset) {
-                return this.videoList.slice(index*Offset-2,index*Offset)
-            },
-        }
-    })
-</script>
 </body>
 </html>

@@ -1,110 +1,44 @@
-.MDButton{
-    float: right;
-    right: 300px;
-    background-color: #308fb3;
+body {
+    background: #f2f2f2;
+    min-width: 1200px;
+    color: #333;
+    text-align: left;
+    font: 14px/1.8 "-apple-system",BlinkMacSystemFont,"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",Arial,sans-serif;
 }
-.main {
-    width: 950px;
-    height: auto;
-    overflow: hidden;
-    margin-top: 50px;
+.main-box{
+    min-height: 664px;
+    margin-bottom: 60px;
 }
-.hppd_title{
-    width: 300px;
-    margin: auto;
+.blue-bg{
+    height: 200px;
+    background: #4e7abb;
 }
-*, :after, :before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+.detail-container{
+    width: 820px;
+    margin: -150px auto 0;
+    background: #fff;
+    border-radius: 4px;
+    min-height: 600px;
+    padding: 30px 90px;
 }
-* {
-    margin: 0 auto;
-    padding: 0;
-}
-.footer {
-    width: 100%;
-    height: auto;
-    padding: 15px 0;
+.detail-container .park-info {
     text-align: center;
-    line-height: 24px;
-    overflow: hidden;
+    margin-bottom: 20px;
 }
 
-*, :after, :before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-* {
-    margin: 0 auto;
-    padding: 0;
-}
-.Login_05 {
-    border: 1px solid #131212a6;
-    width: 950px;
-    height: auto;
-    padding: 20px;
+.detail-container p {
     font-size: 14px;
-    letter-spacing: 1px;
-    line-height: 30px;
-    overflow: hidden;
-    margin-bottom: 10px;
+    color: #666;
+    line-height: 24px;
+    margin-bottom: 12px;
 }
-*, :after, :before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-* {
-    margin: 0 auto;
-    padding: 0;
-}
-.Content_Nr {
-    width: 910px;
-    height: auto;
-    border-bottom: #bdbdbd 1px solid;
-    line-height: 35px;
+.content-box {
     overflow: hidden;
 }
-*, :after, :before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-* {
-    margin: 0 auto;
-    padding: 0;
-}
-table.table-itemstu {
+.detail-container h2 {
+    font-size: 20px;
     text-align: center;
-    margin-left: 12px;
-    border-collapse: collapse;
-    border: 1px solid #808080;
-    width: 97%;
-}
-pre code, table {
-    background-color: transparent;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-*, :after, :before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-* {
-    margin: 0 auto;
-    padding: 0;
-}
-*, :after, :before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-* {
-    margin: 0 auto;
-    padding: 0;
+    font-weight: 700;
+    height: 40px;
+    line-height: 40px;
 }

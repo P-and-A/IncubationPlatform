@@ -68,6 +68,8 @@ public class HomeServiceImpl implements IHomeService {
 
     public ServerResponse getAnnualMeetings(){
         List<MessageVideo> messageVideoList = messageVideoDao.selectList(new QueryWrapper<MessageVideo>()
+
+
                                                                             .orderByDesc("create_time"));
         if (messageVideoList.size() > 0){
             return ServerResponse.createBySuccess(messageVideoList);

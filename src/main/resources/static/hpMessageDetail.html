@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>大学生创新创业大赛通知详情</title>
     <link href="layui/css/layui.css" rel="stylesheet">
     <link href="css/hpMessageDetail.css" rel="stylesheet">
+    <link href="css/all.css" rel="stylesheet">
 </head>
 <body>
 <ul class="layui-nav layui-bg-cyan">
@@ -13,58 +14,53 @@
     <li class="layui-nav-item MDButton"><a href="">sign in</a></li>
     <span class="layui-nav-bar" style="left: 20px; top: 55px; width: 0px; opacity: 0;"></span>
 </ul>
-<div class="part_main">
-    <table border="0" cellspacing="20" cellpadding="0">
-        <thead>
-            <td align="center" class="z_24">关于举办第十一届全国大学生创新创业年会的通知</td>
-        </thead>
-        <tbody>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="message-title" th:text="#{message.title}">
+                关于2019年大创项目立项通知
+            </div>
+            <div class="message-other">
+                作者：黄泳棋 <span th:text="${#message.author}"/> 来源：创客空间<span th:text="${#message.source}"/>  创建时间：2019/3/12<span th:text="${#message.createTime}"/>
+            </div>
+            <div class="message-contant">
+                <span th:text="#{message.content}"/>
+                各单位：<br>
+                　　根据《广州商学院2018—2019学年校历》安排，本学年寒假从2019年1月14日至2月22日，共6周。现将有关事项通知如下：
+                　　<br>一、学生放假安排
+                　　<br>1.学生放假时间为2019年1月14日～2月22日，下学期注册时间为2月23日，正式上课时间为2月25日。
+                　　<br>2.学生可通过教务管理系统查询学业成绩。
+                　　<br>3.下学期开学后2周内安排补考，以教务处发布时间为准，请补考的同学做好准备。
+                　　<br>4.学生应注意假期安全，合理安排好时间。
+                　　<br>二、教职工期末工作和放假安排
+                　<br>　1.教师应于2019年1月14日前完成评卷工作，上交考试成绩，并完成期末相关工作。
+                　　<br>2.教职工放假时间从2019年1月16日开始。
+                　　<br>3.下学期，行政教辅人员于2019年2月20日到人事处签名报到；教师于2月22日到图书馆大厅签名报到。
+                　　<br>4.教职工大会定于2019年2月22日上午10时，在图书馆学术报告厅召开；中层干部会议拟定于2019年2月21日召开（通知另发）。
+                　　<br>5.学校综合办公室统一安排学校寒假值班。
+                　　<br>6.各单位要在放假前做好学期末各项工作，做好寒假期间的安全保卫工作和新学期开学的各项准备工作。有关单位要利用假期全面检查教学仪器设备，确保下学期正常教学。
+                    <br>5.学校综合办公室统一安排学校寒假值班。
+                　　<br>6.各单位要在放假前做好学期末各项工作，做好寒假期间的安全保卫工作和新学期开学的各项准备工作。有关单位要利用假期全面检查教学仪器设备，确保下学期正常教学。
+                <br>5.学校综合办公室统一安排学校寒假值班。
+                　　<br>6.各单位要在放假前做好学期末各项工作，做好寒假期间的安全保卫工作和新学期开学的各项准备工作。有关单位要利用假期全面检查教学仪器设备，确保下学期正常教学。
 
-        <tr>
-            <td align="center">发布时间：2018-09-14</td>
-        </tr>
-        <tr>
-            <td>
-                <div class="editor-content">
-                    &nbsp;&nbsp;
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="pdf-container">
-                    <iframe class="iframe4pdf" id="iframe4pdf_1" src="img/aa.pdf" frameborder="no" scrolling="no"></iframe></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <h4>附件：</h4>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <ul data-command="ListAttachment">
-                    <li>
-                        <h5 class="c-attachment-tile">关于举办第十一届全国大学生创新创业年会的通知.pdf(点击下载)</h5>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <br><br><br><br><br><br>
-
-    <footer style="background-color: #308fb3 ;text-align: center">
-        <p>
-            版权所有：创序工作室
-        </p>
-        <p>
-            地址：广州市黄埔区九龙镇九龙大道广州商学院创客空间
-        </p>
-        <p>
-            联系电话：123456789
-        </p>
-    </footer>
+            </div>
+        </div>
+    </div>
 </div>
+
+<footer class="foot">
+    <span>
+    <p>
+        版权所有：创序工作室
+    </p>
+    <p>
+        地址：广州市黄埔区九龙镇九龙大道广州商学院创客空间
+    </p>
+    <p>
+        联系电话：123456789
+    </p>
+    </span>
+</footer>
 </body>
 </html>
