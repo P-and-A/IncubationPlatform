@@ -52,4 +52,11 @@ public class HomeController {
         return iHomeService.getAnnualMeetings();
     }
 
+    @RequestMapping("/study")
+    @ResponseBody
+    public ServerResponse getStudySection(){
+        Map<String,Object> messageCondition = new HashMap<>();
+        messageCondition.put("classification", Const.MessageClassification.STUDY_SECTION);
+        return ServerResponse.createBySuccess(iMessageService.listByMap(messageCondition));
+    }
 }
