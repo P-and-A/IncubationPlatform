@@ -40,6 +40,7 @@ public class Const {
         String ANNOUNCEMENTS = "通知公告";
         String CHARACTER_STYLE = "创业人物风采";
         String NEW = "新闻动态";
+        String STUDY_SECTION = "学习园地";
     }
 
 }
