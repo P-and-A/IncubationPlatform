@@ -29,7 +29,7 @@ $.ajax({
             },
             methods:{
                 getMessageId(id){
-                  location.href="message/detail"+id;
+                  location.href="message/detail/"+id;
                 }
             },
             filters: {
@@ -64,7 +64,7 @@ $.ajax({
             },
         methods:{
             getCXXLLXId(id){
-                location.href="approval/detail"+id;
+                location.href="approval/detail/"+id;
             }
         }
         });
@@ -91,7 +91,7 @@ $.ajax({
             },
             methods:{
                 getCYXLLXId(id){
-                    location.href="approval/detail"+id;
+                    location.href="approval/detail/"+id;
                 }
             }
         });
@@ -116,7 +116,7 @@ $.ajax({
             },
             methods:{
                 getCYSJLXId(id){
-                    location.href="approval/detail"+id;
+                    location.href="approval/detail/"+id;
                 }
             }
         });
@@ -144,7 +144,7 @@ $.ajax({
                 },
                 methods:{
                     getCXXLJXId(id){
-                        location.href="approval/detail"+id;
+                        location.href="approval/detail/"+id;
                     }
                 }
             });
@@ -172,7 +172,7 @@ $.ajax({
             },
             methods:{
                 getCYXLJXId(id){
-                    location.href="approval/detail"+id;
+                    location.href="approval/detail/"+id;
                 }
             }
         });
@@ -197,7 +197,7 @@ $.ajax({
             },
             methods:{
                 getCYSJJXId(id){
-                    location.href="approval/detail"+id;
+                    location.href="approval/detail/"+id;
                 }
             }
         });
