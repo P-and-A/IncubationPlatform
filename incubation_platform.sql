@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2019-03-09 17:33:30
+Date: 2019-03-26 20:25:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,7 +34,7 @@ CREATE TABLE `admin` (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('1', 'a', '123', '123', '1', '2019-02-27 16:58:25', null, null);
+INSERT INTO `admin` VALUES ('1', '董志康', '123', '123', '1', '2019-02-27 16:58:25', null, null);
 
 -- ----------------------------
 -- Table structure for award
@@ -104,6 +104,8 @@ CREATE TABLE `link` (
 -- ----------------------------
 -- Records of link
 -- ----------------------------
+INSERT INTO `link` VALUES ('1', '中国知网', null, 'http://cnki.net/');
+INSERT INTO `link` VALUES ('2', '广州商学院官网', null, 'http://www.gzcc.cn/');
 
 -- ----------------------------
 -- Table structure for match
@@ -134,8 +136,8 @@ CREATE TABLE `message` (
   `id` varchar(32) NOT NULL,
   `title` varchar(255) DEFAULT NULL COMMENT '标题',
   `content` text COMMENT '内容',
-  `source` varchar(255) DEFAULT NULL,
-  `classification` varchar(255) DEFAULT NULL,
+  `source` varchar(255) DEFAULT NULL COMMENT '来源',
+  `classification` varchar(255) DEFAULT NULL COMMENT '分类',
   `title_image` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL COMMENT '0表示存在，1表示删除',
   `author_id` varchar(32) DEFAULT NULL COMMENT '作者id',
@@ -146,7 +148,10 @@ CREATE TABLE `message` (
 -- ----------------------------
 -- Records of message
 -- ----------------------------
-INSERT INTO `message` VALUES ('123', '关于那天的疑问', '这是测试内容', null, '通知公告', null, null, null, '2018-11-26 20:46:38');
+INSERT INTO `message` VALUES ('123', '关于举办第十一届全国大学生创新创业年会的通知', '这是通知正文内容', '创客空间', '通知公告', null, null, '1', '2018-11-26 20:46:38');
+INSERT INTO `message` VALUES ('124', '第十一届全国大学生创新创业年会入选项目提交和参会须知', '这是通知<br>正文内容', '创客空间', '通知公告', '', null, '1', '2019-03-14 20:46:38');
+INSERT INTO `message` VALUES ('125', '我校召开副院长（副主任）工作会议', '通报了期末考试进展情况，对教务处工作进行了总结。', '广州商学院', '新闻动态', null, null, '2', '2019-03-14 19:36:35');
+INSERT INTO `message` VALUES ('127', '加盟干洗店投资多少钱', '洗衣机可以说是一个伟大的发明，它为我们节约了很多的时间和精力，给我们的生活带来了不少的便利。然而很多人发现，想羊毛衣这样的衣服不能。。。', '快马商机网', '创业学习园地', null, null, '4', '2019-03-14 19:54:16');
 
 -- ----------------------------
 -- Table structure for message_video
@@ -167,6 +172,7 @@ CREATE TABLE `message_video` (
 -- ----------------------------
 -- Records of message_video
 -- ----------------------------
+INSERT INTO `message_video` VALUES ('126', '印象创业——创业中国年会震撼演绎', '', '', '腾讯视频', '', null, '2019-03-14 20:09:36');
 
 -- ----------------------------
 -- Table structure for notice
@@ -229,8 +235,6 @@ CREATE TABLE `project` (
   `support_sum` int(255) DEFAULT NULL COMMENT '资助金额',
   `is_enable` tinyint(4) DEFAULT NULL COMMENT '是否已并无法修改',
   `subject_code` varchar(255) DEFAULT NULL COMMENT '学科代码',
-  `award_id` int(11) DEFAULT NULL COMMENT '获奖情况id',
-  `qq` varchar(255) DEFAULT NULL COMMENT 'qq',
   `deadline_time` datetime DEFAULT NULL COMMENT '结项时间',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
@@ -239,7 +243,7 @@ CREATE TABLE `project` (
 -- ----------------------------
 -- Records of project
 -- ----------------------------
-INSERT INTO `project` VALUES ('5555', '8888', '创序软件工作室', '创业实践', '国家级', '这是一个工作室', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '已立项', '2018-11-28 01:44:59', '20000', '1', null, null, null, null, '2018-11-28 01:44:54');
+INSERT INTO `project` VALUES ('5555', '8888', '创序软件工作室', '创业实践', '国家级', '这是一个工作室', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '已立项', '2018-11-28 01:44:59', '20000', '1', null, null, '2018-11-28 01:44:54');
 
 -- ----------------------------
 -- Table structure for project_status_record
@@ -297,7 +301,7 @@ INSERT INTO `role` VALUES ('f40baec93d615bd2a68c9432bb33b8d9', 'admin', null);
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
-  `id` varchar(32) DEFAULT NULL COMMENT '标识符',
+  `id` varchar(32) NOT NULL COMMENT '标识符',
   `name` varchar(255) DEFAULT NULL COMMENT '名字',
   `password` varchar(255) DEFAULT NULL COMMENT '密码',
   `student_id` varchar(255) DEFAULT NULL COMMENT '学号',
@@ -307,11 +311,13 @@ CREATE TABLE `student` (
   `belong_college` varchar(255) DEFAULT NULL COMMENT '所属学院',
   `grade` varchar(255) DEFAULT NULL COMMENT '年级',
   `specialty` varchar(255) DEFAULT NULL COMMENT '专业',
-  `clazz` varchar(255) DEFAULT NULL COMMENT '班级',
+  `qq` int(255) DEFAULT NULL COMMENT 'qq',
+  `clazz` varchar(255) NOT NULL COMMENT '班级',
   `is_main` int(11) DEFAULT '0' COMMENT '是否负责人',
   `role_id` varchar(32) DEFAULT NULL COMMENT '权限角色',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `is_enable` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `studentId` (`student_id`),
   KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -319,11 +325,11 @@ CREATE TABLE `student` (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES ('123', '黄泳棋', '123456', '201606110065', '17827417363', '1427600836@', '广州商学院', '信息技术与工程学院', '2016', '软件工程', '1', '1', '554356f0764a528f9b00187c9fd53725', '2018-11-28 01:34:37', null);
-INSERT INTO `student` VALUES ('1234', '郭木凯', '123456', '201606110066', '17827417363', '1427600836@', '广州商学院', '信息技术与工程学院', '2016', '软件工程', '1', '0', '554356f0764a528f9b00187c9fd53725', '2018-11-28 01:35:14', null);
-INSERT INTO `student` VALUES ('12345', '黄宏娜', '123456', '201606110067', '17827417363', '1427600836@', '广州商学院', '信息技术与工程学院', '2016', '软件工程', '2', '0', '554356f0764a528f9b00187c9fd53725', '2018-11-28 01:36:47', null);
-INSERT INTO `student` VALUES ('123456', '廖超凡', '123456', '201606110068', '17827417363', '1427600836@', '广州商学院', '信息技术与工程学院', '2016', '软件工程', '1', '0', '554356f0764a528f9b00187c9fd53725', '2018-11-28 01:36:54', null);
-INSERT INTO `student` VALUES ('1234567', '陈力铭', '123456', '201606110069', '17827417363', '1427600836@', '广州商学院', '信息技术与工程学院', '2016', '软件工程', '1', '0', '554356f0764a528f9b00187c9fd53725', '2018-11-28 01:39:02', null);
+INSERT INTO `student` VALUES ('123', '黄泳棋', '123456', '201606110065', '17827417363', '1427600836@qq.com', '广州商学院', '信息技术与工程学院', '2016', '软件工程', null, '1', '1', '554356f0764a528f9b00187c9fd53725', '2018-11-28 01:34:37', null);
+INSERT INTO `student` VALUES ('1234', '郭木凯', '123456', '201606110066', '17827417363', '1427600836@qq.com', '广州商学院', '信息技术与工程学院', '2016', '软件工程', null, '1', '0', '554356f0764a528f9b00187c9fd53725', '2018-11-28 01:35:14', null);
+INSERT INTO `student` VALUES ('12345', '黄宏娜', '123456', '201606110067', '17827417363', '1427600836@qq.com', '广州商学院', '信息技术与工程学院', '2016', '软件工程', null, '2', '0', '554356f0764a528f9b00187c9fd53725', '2018-11-28 01:36:47', null);
+INSERT INTO `student` VALUES ('123456', '廖超凡', '123456', '201606110068', '17827417363', '1427600836@qq.com', '广州商学院', '信息技术与工程学院', '2016', '软件工程', null, '1', '0', '554356f0764a528f9b00187c9fd53725', '2018-11-28 01:36:54', null);
+INSERT INTO `student` VALUES ('1234567', '陈力铭', '123456', '201606110069', '17827417363', '1427600836@qq.com', '广州商学院', '信息技术与工程学院', '2016', '软件工程', null, '1', '0', '554356f0764a528f9b00187c9fd53725', '2018-11-28 01:39:02', null);
 
 -- ----------------------------
 -- Table structure for student_project
@@ -339,6 +345,11 @@ CREATE TABLE `student_project` (
 -- ----------------------------
 -- Records of student_project
 -- ----------------------------
+INSERT INTO `student_project` VALUES ('1', '123', '5555', '2019-03-14 20:00:09');
+INSERT INTO `student_project` VALUES ('2', '1234', '5555', '2019-03-14 20:00:40');
+INSERT INTO `student_project` VALUES ('3', '12345', '5555', '2019-03-14 20:00:52');
+INSERT INTO `student_project` VALUES ('4', '123456', '5555', '2019-03-14 20:01:04');
+INSERT INTO `student_project` VALUES ('5', '1234567', '5555', '2019-03-14 20:01:15');
 
 -- ----------------------------
 -- Table structure for teacher
@@ -376,4 +387,4 @@ CREATE TABLE `team` (
 -- ----------------------------
 -- Records of team
 -- ----------------------------
-INSERT INTO `team` VALUES ('tobe', 'number', '这是一支充满活力的团队 ', '2018-11-28 01:48:41');
+INSERT INTO `team` VALUES ('1', 'number', '这是一支充满活力的团队 ', '2018-11-28 01:48:41');
