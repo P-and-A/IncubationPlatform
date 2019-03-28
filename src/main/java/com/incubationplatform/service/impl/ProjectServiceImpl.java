@@ -3,8 +3,9 @@ package com.incubationplatform.service.impl;
 import com.incubationplatform.common.Const;
 import com.incubationplatform.common.ServerResponse;
 import com.incubationplatform.dao.AdminDao;
-import com.incubationplatform.pojo.Admin;
-import com.incubationplatform.pojo.Project;
+import com.incubationplatform.dao.ProjectTecherDao;
+import com.incubationplatform.dao.StudentProjectDao;
+import com.incubationplatform.pojo.*;
 import com.incubationplatform.dao.ProjectDao;
 import com.incubationplatform.service.IProjectService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * <p>
@@ -30,6 +33,12 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectDao, Project> impleme
 
     @Autowired
     private AdminDao adminDao;
+
+    @Autowired
+    private StudentProjectDao studentProjectDao;
+
+    @Autowired
+    private ProjectTecherDao projectTecherDao;
 
     public ServerResponse reviewProject(Integer projectId, Integer adminId, String opinion, Integer status){
         Project project = projectDao.selectById(projectId);
@@ -55,5 +64,34 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectDao, Project> impleme
         return ServerResponse.createByErrorMessage("此管理员不存在");
     }
 
-
+    public ServerResponse submitProject(Project project, List<String> team, List<String> teacherList){
+        if (project != null){
+            String uuid = UUID.randomUUID().toString();
+            project.setId(uuid);
+            int resultCount = projectDao.insert(project);
+            if(resultCount == 0){
+                return ServerResponse.createByErrorMessage("项目提交失败");
+            }
+            for (String studentId : team){
+                uuid = UUID.randomUUID().toString();
+                StudentProject studentProject = new StudentProject();
+                studentProject.setId(uuid);
+                studentProject.setUserId(studentId);
+                studentProject.setProductId(project.getId());
+                studentProject.setCreateTime(LocalDateTime.now());
+                studentProjectDao.insert(studentProject);
+            }
+            for (String teacherId : teacherList){
+                uuid = UUID.randomUUID().toString();
+                ProjectTecher projectTecher = new ProjectTecher();
+                projectTecher.setId(uuid);
+                projectTecher.setTeacherId(teacherId);
+                projectTecher.setProjectId(project.getId());
+                projectTecher.setCreateTime(LocalDateTime.now());
+                projectTecherDao.insert(projectTecher);
+            }
+            return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByErrorMessage("项目参数有误");
+    }
 }

@@ -43,4 +43,9 @@ public class Const {
         String STUDY_SECTION = "学习园地";
     }
 
+    public interface FileClassfication{
+        String CREDENTIAL_File ="证明材料";
+        String POST_PROJECT_File = "结项文档";
+    }
+
 }
