@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2019-03-26 20:25:15
+Date: 2019-03-28 12:03:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -77,6 +77,7 @@ INSERT INTO `colleage` VALUES ('4', '电子商务学院', '1');
 DROP TABLE IF EXISTS `file`;
 CREATE TABLE `file` (
   `id` varchar(32) NOT NULL,
+  `original_name` varchar(255) DEFAULT NULL COMMENT '原文件名',
   `name` varchar(255) DEFAULT NULL COMMENT '名字',
   `classification` varchar(255) DEFAULT NULL COMMENT '文件功能分类',
   `url` varchar(255) DEFAULT NULL COMMENT '文件路径',
@@ -231,6 +232,7 @@ CREATE TABLE `project` (
   `university_opinion_handing_time` datetime DEFAULT NULL COMMENT '学校立项意见处理时间',
   `university_post_opinion_handing_time` datetime DEFAULT NULL COMMENT '学校结项意见处理时间',
   `status` varchar(255) DEFAULT NULL COMMENT '审核状态',
+  `team_id` varchar(32) DEFAULT NULL COMMENT '团队id',
   `change_time` datetime DEFAULT NULL COMMENT '状态修改时间',
   `support_sum` int(255) DEFAULT NULL COMMENT '资助金额',
   `is_enable` tinyint(4) DEFAULT NULL COMMENT '是否已并无法修改',
@@ -243,7 +245,7 @@ CREATE TABLE `project` (
 -- ----------------------------
 -- Records of project
 -- ----------------------------
-INSERT INTO `project` VALUES ('5555', '8888', '创序软件工作室', '创业实践', '国家级', '这是一个工作室', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '已立项', '2018-11-28 01:44:59', '20000', '1', null, null, '2018-11-28 01:44:54');
+INSERT INTO `project` VALUES ('5555', '8888', '创序软件工作室', '创业实践', '国家级', '这是一个工作室', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '已立项', null, '2018-11-28 01:44:59', '20000', '1', null, null, '2018-11-28 01:44:54');
 
 -- ----------------------------
 -- Table structure for project_status_record
@@ -377,7 +379,7 @@ INSERT INTO `teacher` VALUES ('322', '董志康', '12345679801', '信息技术�
 -- ----------------------------
 DROP TABLE IF EXISTS `team`;
 CREATE TABLE `team` (
-  `id` varchar(11) NOT NULL,
+  `id` varchar(32) NOT NULL,
   `team_name` varchar(255) DEFAULT NULL COMMENT '团队名字',
   `content` text COMMENT '团队简介',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
