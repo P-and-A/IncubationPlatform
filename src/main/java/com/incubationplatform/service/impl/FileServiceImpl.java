@@ -64,10 +64,10 @@ public class FileServiceImpl extends ServiceImpl<FileDao, File> implements IFile
                 File credentialFile = new File();
                 credentialFile.setClassification(Const.FileClassfication.CREDENTIAL_File);
                 credentialFile.setCreateTime(LocalDateTime.now());
-                credentialFile.setName(fileName);
+                credentialFile.setName(uploadFileName);
                 credentialFile.setId(uuid);
                 credentialFile.setBelongId(studentId);
-                //todo 原文件名
+                credentialFile.setOriginalName(fileName);
                 fileDao.insert(credentialFile);
                 targetFile.delete();
 
@@ -109,10 +109,10 @@ public class FileServiceImpl extends ServiceImpl<FileDao, File> implements IFile
             File credentialFile = new File();
             credentialFile.setClassification(Const.FileClassfication.POST_PROJECT_File);
             credentialFile.setCreateTime(LocalDateTime.now());
-            credentialFile.setName(fileName);
+            credentialFile.setName(uploadFileName);
             credentialFile.setId(uuid);
             credentialFile.setBelongId(studentId);
-            //todo 原文件名
+            credentialFile.setOriginalName(fileName);
             fileDao.insert(credentialFile);
             targetFile.delete();
 
