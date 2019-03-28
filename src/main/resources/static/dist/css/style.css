@@ -194,3 +194,7 @@ body .wrapper  .bagg{
 table .infontcolor{
     color: black;
 }
+.box-body label{
+    /*background-color:transparent;border:0;*/
+    margin-bottom: 30px;
+}
