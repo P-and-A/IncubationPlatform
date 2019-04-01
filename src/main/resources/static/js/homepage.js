@@ -16,7 +16,7 @@ $(function () {
 /*
 通知通告
  */
-var TZTG,message;
+var TZTG, message;
 $.ajax({
     url: '/home/message',
     type: 'get',
@@ -27,9 +27,9 @@ $.ajax({
             data: {
                 message: message,
             },
-            methods:{
-                getMessageId(id){
-                  location.href="message/detail/"+id;
+            methods: {
+                getMessageId(id) {
+                    location.href = "message/detail/" + id;
                 }
             },
             filters: {
@@ -38,7 +38,7 @@ $.ajax({
                     var year = date.getFullYear();
                     var month = date.getMonth();
                     var day = date.getDate();
-                    return year+'-'+(month+1)+'-'+day;
+                    return year + '-' + (month + 1) + '-' + day;
                 }
             },
 
@@ -51,7 +51,7 @@ $.ajax({
 /*
     创新训练项目(立项)
  */
-var CXXL,CXXLProjects;
+var CXXL, CXXLProjects;
 $.ajax({
     url: '/home/approval',
     type: 'get',
@@ -74,11 +74,10 @@ $.ajax({
 });
 
 
-
 /*
     创业训练项目(立项)
  */
-var CYXLProjects,CYXL;
+var CYXLProjects, CYXL;
 $.ajax({
     url: '/home/approval',
     type: 'get',
@@ -103,7 +102,7 @@ $.ajax({
 /*
     创业实践项目(立项)
  */
-var CYSJProject,CYSJ;
+var CYSJProject, CYSJ;
 $.ajax({
     url: '/home/approval',
     type: 'get',
@@ -124,83 +123,98 @@ $.ajax({
     }
 });
 
-
-
-
-
-/*
-    创新训练项目(结项)
- */
-var CXXL_JX,CXXLProjects_jx ;
-$.ajax({
-    url: '/home/approval',
-    type: 'get',
-    success: function (response) {
-        CXXLProjects_jx = response.data;
-            CXXL_JX = new Vue({
-                el: '#CXXLTitle_jx',
-                data: {
-                    CXXLProjects_jx: CXXLProjects_jx,
-                },
-                methods:{
-                    getCXXLJXId(id){
-                        location.href="approval/detail/"+id;
-                    }
-                }
-            });
-        return;
+<!--首屏渲染-->
+var homeVue = new Vue({
+    el: '#homeVue',
+    filters: {
+        abbreviationContent: function (content) {
+            if (content.length > 40) {
+                return (content.slice(0, 40)).concat("......");
+            } else {
+                return content;
+            }
+        }
+    },
+    data: {
+        data:[],
+        talent: [],
+        link:[],
+        excellentVenture:[],
+        excellentInnovate:[],
+        excellentPractice:[]
+    },
+    created: function () {
+        var that=this;
+        $.ajax({
+            url:"/home",
+            method:"GET",
+            success:function (data) {
+                that.data=data;
+                that.talent=data.data.talent;
+                that.link=data.data.link;
+                that.excellentVenture=data.data.excellentVenture;
+                that.excellentInnovate=data.data.excellentInnovate;
+                that.excellentPractice=data.data.excellentPractice;
+            }
+        });
+    },
+    computed: {
+        partTalent: function () {
+            if (this.talent.length > 5) {
+                return this.talent.slice(0, 5);
+            } else {
+                console.log(this.talent)
+                return this.talent;
+            }
+        }
+    },
+    methods: {
+        //创新训练
+        getCXXLJXId(id) {
+                location.href = "approval/detail" + id;
+        },
+        //创业训练
+        getCYXLJXId(id) {
+            location.href = "approval/detail" + id;
+        },
+        //创业实践
+        getCYSJJXId(id) {
+            location.href = "approval/detail" + id;
+        }
     }
 });
 
-
-
-
-/*
-    创业训练项目(结项)
- */
-
-var CYXL_JX,CYXLProjects_jx;
-$.ajax({
-    url: '/home/approval',
-    type: 'get',
-    success: function (response) {
-        CYXLProjects_jx = response.data;
-        CYXL_JX = new Vue({
-            el: '#CYXLTitle_jx',
-            data: {
-                CYXLProjects_jx: CYXLProjects_jx,
-            },
-            methods:{
-                getCYXLJXId(id){
-                    location.href="approval/detail/"+id;
+<!--创业年会-->
+var videoVue = new Vue({
+    el: '#videoVue',
+    filters: {
+        abbreviationContent: function (title) {
+            if (title.length > 20) {
+                return (title.slice(0, 20)).concat("......");
+            } else {
+                return title;
+            }
+        }
+    },
+    created: function () {
+        $.ajax({
+            url:'/home/annual_meeting',
+            method:"GET",
+            success:function (result) {
+                if (result.net === 2000) {
+                    this.videoList=result.data.videlList;
+                }else {
+                    alert(result.msg)
                 }
             }
-        });
-        return;
-    }
-});
-
-
-/*
-    创业实践项目(立项)
- */
-var CYSJProjects_jx,CYSJ_JX;
-$.ajax({
-    url: '/home/approval',
-    type: 'get',
-    success: function (response) {
-        CYSJProjects_jx = response.data;
-        CYSJ_JX = new Vue({
-            el: '#CYSJTitle_jx',
-            data: {
-                CYSJProjects_jx: CYSJProjects_jx,
-            },
-            methods:{
-                getCYSJJXId(id){
-                    location.href="approval/detail/"+id;
-                }
-            }
-        });
-        return;
+        })
+    },
+    data: {
+        videoList: []
+    },
+    methods: {
+        partVideoList: function (index, Offset) {
+            return this.videoList.slice(index * Offset - 2, index * Offset)
+        }
     }
 });
