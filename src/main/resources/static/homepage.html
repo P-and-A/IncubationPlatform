@@ -103,7 +103,7 @@
                     <div class="message-title text">
                         关于2019年大创立项项目的公示
                     </div>
-                    <div class="all-content">
+                    <div class="all-content" id="projectVue">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="project-size project-font col-xs-6 col-md-4">
@@ -112,7 +112,7 @@
                                         创新训练项目
                                         </thead>
                                         <tbody>
-                                        <tr v-for="(CXXLProject,index) in CXXLProjects " v-if="index<5"  @click="getCXXLLXId(CXXLProject.id)">
+                                        <tr v-for="(CXXLProject,index) in innovate " v-if="index<5"  @click="getCXXLLXId(CXXLProject.id)">
                                             <td>
                                                 <a :href="'approval/detail/'+'CXXLProject.id'">
                                                     {{CXXLProject.name}}
@@ -133,7 +133,7 @@
                                         创业训练项目
                                         </thead>
                                         <tbody>
-                                        <tr v-for="(CYXLProject,index) in CYXLProjects" v-if="index<5" @click="getCYXLLXId(CYXLProject.id)">
+                                        <tr v-for="(CYXLProject,index) in venture" v-if="index<5" @click="getCYXLLXId(CYXLProject.id)">
                                             <td>
                                                 <a :href="'approval/detail/'+'CYXLProject.id'">
                                                     {{CYXLProject.name}}
@@ -154,7 +154,7 @@
                                         创业实践项目
                                         </thead>
                                         <tbody>
-                                        <tr v-for="(CYSJProject,index) in CYSJProjects "v-if="index<5"  @click="getCYSJLXId(CYSJProject.id)">
+                                        <tr v-for="(CYSJProject,index) in practice "v-if="index<5"  @click="getCYSJLXId(CYSJProject.id)">
                                             <td>
                                                 <a :href="'approval/detail/'+'CYSJProject.id'">
                                                     {{CYSJProject.name}}
