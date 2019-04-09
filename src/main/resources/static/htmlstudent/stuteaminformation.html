@@ -15,7 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -28,6 +28,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+
     <![endif]-->
 
     <!-- Google Font -->
@@ -117,9 +119,9 @@ desired effect
         <ul class="sidebar-menu" data-widget="tree" style="margin-top:2px">
 
             <!-- Optionally, you can add icons to the links -->
-            <li ><a href="studentfirst.html"><i class="fa fa-link"></i> <span>报名</span></a></li>
-            <li ><a href="stusubmit.html"><i class="fa fa-link"></i> <span>递交资料</span></a></li>
-            <li ><a href="stuperinformation.html"><i class="fa fa-link"></i> <span>个人信息</span></a></li>
+            <li><a href="studentfirst.html"><i class="fa fa-link"></i> <span>报名</span></a></li>
+            <li><a href="stusubmit.html"><i class="fa fa-link"></i> <span>递交资料</span></a></li>
+            <li><a href="stuperinformation.html"><i class="fa fa-link"></i> <span>个人信息</span></a></li>
             <li class="active"><a href="stuteaminformation.html"><i class="fa fa-link"></i> <span>团队信息</span></a></li>
 
 
@@ -147,87 +149,91 @@ desired effect
         <!-- Main content -->
         <section class="content container-fluid" style="background-color: white">
 
- </span>
+            </span>
             <div class="card">
                 <div class="card-header">
-                    <h4 >信息管理</h4>
+                    <h4>信息管理</h4>
                 </div>
                 <div class="card-body">
 
-                    <table id="example" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                    <table id="team" class="table table-bordered table-hover dataTable" role="grid"
+                           aria-describedby="example2_info">
                         <thead>
-                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">姓名</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">学号</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">专业班级</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">所在学院</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">联系方式</th></tr>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                                姓名
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Browser: activate to sort column ascending">学号
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Platform(s): activate to sort column ascending">专业班级
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Engine version: activate to sort column ascending">所在学院
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="CSS grade: activate to sort column ascending">联系方式
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
+                        <div id="dd">
+                            <tr v-for="(item, index) in studentList">
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.studentId }}</td>
+                                <td>{{ item.grade }}</td>
+                                <td>{{ item.belongCollege}}</td>
+                                <td>{{item.phone }}</td>
 
-                        <tr role="row" class="odd">
-                            <td class="sorting_1">黄宏娜</td>
-                            <td>16软件工程</td>
-                            <td>201608030062</td>
-                            <td>信息技术与工程学院</td>
-                            <td>12341235828</td>
-                        </tr>
-                        <tr role="row" class="odd">
-                            <td class="sorting_1">黄宏娜</td>
-                            <td>16软件工程</td>
-                            <td>201608030062</td>
-                            <td>信息技术与工程学院</td>
-                            <td>12341235828</td>
-                        </tr>  <tr role="row" class="odd">
-                            <td class="sorting_1">黄宏娜</td>
-                            <td>16软件工程</td>
-                            <td>201608030062</td>
-                            <td>信息技术与工程学院</td>
-                            <td>12341235828</td>
-                        </tr>
-                        <tr role="row" class="odd">
-                            <td class="sorting_1">黄宏娜</td>
-                            <td>16软件工程</td>
-                            <td>201608030062</td>
-                            <td>信息技术与工程学院</td>
-                            <td>12341235828</td>
-                        </tr>
+                            </tr>
+                        </div>
 
 
-
-                        </tbody></table>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <h4 >项目信息</h4>
+                    <h4>项目信息</h4>
                 </div>
                 <div class="card-body">
 
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="project">
                         <tbody>
-                        <tr>
-                            <td>项目名称</td>
-                            <td>创序工作室</td>
+                        <div>
+                            <tr>
+                                <td>项目名称</td>
+                                <td>{{ name }}</td>
 
-                        </tr>
-                        <tr>
-                            <td>项目类型</td>
-                            <td>创业训练项目</td>
+                            </tr>
+                            <tr>
+                                <td>项目类型</td>
+                                <td>{{classification}}</td>
 
-                        </tr>
-                        <tr>
-                            <td>项目负责人</td>
-                            <td>黄泳琪</td>
+                            </tr>
+                            <tr>
+                                <td>项目负责人</td>
+                                <td>{{main.name}}</td>
 
-                        </tr>
-                        <tr>
+                            </tr>
+                        </div>
+                        <tr >
                             <td>指导老师</td>
-                            <td>董志康</td>
-
+                            <td>
+                                <span v-for="(teacher, index) in teacherList">{{teacher.name}}  </span>
+                            </td>
                         </tr>
                         <tr>
                             <td>项目简介</td>
-                            <td>创序工作室是一个。。</td>
+                            <td>{{introduce}}</td>
 
                         </tr>
-                        </tbody></table>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!--------------------------
@@ -338,9 +344,132 @@ desired effect
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.9/dist/vue.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+
+<script>
+
+
+
+
+
+
+    // $(function () {
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: "student /project",
+    //         success: function (response) {
+    //             xiang = new Vue({
+    //                 el: '#xample',
+    //                 data: {
+    //                     name:allData.name,
+    //                     introduce:allData.introduce,
+    //                     classification:allData.classification,
+    //                     is_main:'',
+    //                     items:allData
+    //                 }
+    //             });
+    //             return;
+    //         }
+    //     })
+    // })
+     // $(function () {
+     //     $.ajax({
+     //         type: 'GET',
+     //         url: "test.json",
+     //         datatype: 'json',
+     //         timeout: 3000,
+     //         success: function (response) {
+     //            var  users = response.data.list;
+     //            console.log(users)
+     //             var teamlist = new Vue({
+     //                 el: '#team',
+     //                 data: {
+     //                     studentList: users.list
+     //                 }
+     //             });
+     //             return;
+     //         }
+     //     });})
+    var v=new Vue({
+    el:'#team',
+    data() {
+        return {
+           studentList:null
+
+        }
+
+    },
+    created() {
+        this.get()
+    },
+    methods: {
+        get(){
+            $.ajax({
+                type: 'GET',
+                url: "test.json",
+                datatype: 'json',
+          success:(response) => {
+                 this.studentList=response.data.lists;
+          }
+            });
+        }
+    }
+})
+    new Vue({
+        el: '#project',
+        data(){
+            return{
+                name: {},
+                introduce: {},
+                classification:{},
+                studentList: {},
+                teacherList:{},
+                main: {}
+            }
+
+        },
+        created() {
+            let self = this
+            $.ajax({
+                type: 'GET',
+                url: "test.json",
+                datatype: 'json',
+                timeout: 3000,
+                success:function (response) {
+                    self.name = response.data.name
+                    self.introduce = response.data.introduce;
+                    self.classification = response.data.classification
+                    self.studentList = response.data.lists
+                    self.teacherList = response.data.teacherList
+                    self.getItem();
+                },
+                error(msg){
+                    console.log(msg.status)
+                }
+            })
+
+
+        },
+        methods: {
+            getItem() {
+                let item = this.studentList;
+                for (var i = 0; i < item.length; i++) {
+                    if (item[i].is_main === '是'){
+                        this.main = item[i]
+                    }
+                }
+            },
+
+
+        },
+
+    })
+
+</script>
 </body>
 </html>
