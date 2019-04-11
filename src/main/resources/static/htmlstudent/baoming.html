@@ -5,6 +5,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html xmlns="http://www.w3.org/1999/html">
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>学生端</title>
@@ -40,7 +41,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             text-align: center;
             vertical-align: middle;
         }
-
+        .error{
+            color:red;
+        }
     </style>
 </head>
 <!--
@@ -185,11 +188,12 @@ desired effect
 
                             <h3 class="timeline-header no-border" style="color: #616142">填写申报书</h3>
                             <div class="timeline-body">
-                                <form class="form-horizontal input_noborder"  align="center" style= "margin: 0cm 0cm 0pt; text-align: left">
+                                <form class="form-horizontal input_noborder" id="baoming"  align="center" style= "margin: 0cm 0cm 0pt; text-align: left">
+                                    <fieldset>
                                     <div class="box-body">
 
                                         <label for="projectName">项目名称：</label>
-                                        <input type="text" name="name" id="projectName" style="height: 30px;" />
+                                        <input type="text" name="name" id="projectName" style="height: 30px;" required/>
                                         <br>
 
                                         <div class="selects">
@@ -223,24 +227,24 @@ desired effect
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="name">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="name" required/>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="belongUniversity" required/>
                                                     </td>
                                                     <td colspan="2">
                                                         <input class="form-control inputcls"
-                                                               size="16" type="text" name="belongUniversity">
+                                                               size="16" type="text" name="belongCollege" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="belongCollege">
+                                                        <input class="form-control inputcls  "
+                                                               size="16" type="text" name="grade" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="grade">
-                                                    </td>
-                                                    <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="specialty">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="specialty" required/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -252,24 +256,24 @@ desired effect
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="grade">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="grade" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="studentId">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="studentId" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="phone">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="phone"  minlength="11" maxlength="11"  required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="email">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="email" name="email" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="qq">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="qq" required/>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -286,24 +290,24 @@ desired effect
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="name">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="name" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="belongUniversity">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="belongUniversity" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="belongCollege">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="belongCollege" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="grade">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="grade" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="specialty">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="specialty" required/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -315,24 +319,24 @@ desired effect
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="grade">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="grade" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="studentId">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="studentId" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="phone">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="phone"  minlength="11" maxlength="11"  required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="email">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="email" name="email" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="qq">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="qq" required/>
                                                     </td>
                                                 </tr>
                                                 <tr></tr>
@@ -346,24 +350,24 @@ desired effect
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="name">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="name" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="belongUniversity">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="belongUniversity" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="belongCollege">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="belongCollege" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="grade">
+                                                        <input class="form-control inputcls required"
+                                                               size="16" type="text" name="grade" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="specialty">
+                                                        <input class="form-control inputcls required"
+                                                               size="16" type="text" name="specialty" required/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -375,24 +379,24 @@ desired effect
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="grade">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="grade" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="studentId">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="studentId" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="phone">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="phone"  minlength="11" maxlength="11"  required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="email">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="email" name="email" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="qq">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="qq" required/>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -421,24 +425,24 @@ desired effect
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="name">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="name" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="belongUniversity">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="belongUniversity" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="belongCollege">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="belongCollege" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="grade">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="grade" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="specialty">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="specialty" required/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -450,30 +454,30 @@ desired effect
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="grade">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="grade" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="studentId">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="studentId" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="phone">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="phone" minlength="11" maxlength="11" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="email">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="email" name="email" required/>
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
-                                                               size="16" type="text" name="qq">
+                                                        <input class="form-control inputcls "
+                                                               size="16" type="text" name="qq" required/>
                                                     </td>
                                                 </tr>
                                             </table>
                                         </div>
 
-                                        <label style="margin-top: 30px">项目组成员近3年获奖及成果情况:</label>
+                                        <label style="margin-top: 30px">项目组成员近3年获奖及成果情况(无可不作填写):</label>
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="panel panel-info">
@@ -482,7 +486,7 @@ desired effect
                                                 </div>
                                                 <div class="panel-body">
                                                     <label for="awardWinner1">获奖者姓名：</label>
-                                                    <input type="text" name="awardWinner1" id="awardWinner1"><br>
+                                                    <input type="text" name="awardWinner1" id="awardWinner1" ><br>
                                                     <label for="awardName1">奖项名称：</label>
                                                     <input type="text" name="awardName1" id="awardName1"><br>
                                                     <label for="awardTime1">获奖时间及颁发单位：</label>
@@ -542,24 +546,24 @@ desired effect
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="name">
                                                     </td>
 
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="belongCollege">
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="post">
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="phone">
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="degree">
                                                     </td>
                                                 </tr>
@@ -577,24 +581,24 @@ desired effect
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="name">
                                                     </td>
 
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="belongCollege">
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="post">
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="phone">
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="degree">
                                                     </td>
                                                 </tr>
@@ -610,24 +614,24 @@ desired effect
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="name">
                                                     </td>
 
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="belongCollege">
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="post">
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="phone">
                                                     </td>
                                                     <td colspan="2">
-                                                        <input class="form-control inputcls"
+                                                        <input class="form-control inputcls required"
                                                                size="16" type="text" name="degree">
                                                     </td>
                                                 </tr>
@@ -637,40 +641,42 @@ desired effect
 
 
                                         <label for="introduce">项目简介:</label>
-                                        <textarea class="form-control input-sm" type="text" name="introduce" id="introduce"></textarea>
+                                        <textarea class="form-control input-sm required" type="text" name="introduce" id="introduce"></textarea>
                                         <label for="background">项目背景:</label>
-                                        <textarea class="form-control input-sm" type="text" name="background" id="background"></textarea>
+                                        <textarea class="form-control input-sm required" type="text" name="background" id="background"></textarea>
                                         <label for="marketAnalysis">项目市场分析:</label>
-                                        <textarea class="form-control input-sm" type="text" name="marketAnalysis" id="marketAnalysis"></textarea>
+                                        <textarea class="form-control input-sm required" type="text" name="marketAnalysis" id="marketAnalysis"></textarea>
 
                                         <label for="technicalFactor">项目技术因素:</label>
-                                        <textarea class="form-control input-sm" type="text"name="technicalFactor" id="technicalFactor"></textarea>
+                                        <textarea class="form-control input-sm required" type="text"name="technicalFactor" id="technicalFactor"></textarea>
                                         <label for="businessModel">商业模式:</label>
-                                        <textarea class="form-control input-sm" type="text" name="businessModel" id="businessModel"></textarea>
+                                        <textarea class="form-control input-sm required" type="text" name="businessModel" id="businessModel"></textarea>
                                         <label for="financialAnalysis">财务分析:</label>
-                                        <textarea class="form-control input-sm" type="text"name="financialAnalysis" id="financialAnalysis"></textarea>
+                                        <textarea class="form-control input-sm required" type="text"name="financialAnalysis" id="financialAnalysis"></textarea>
                                         <label for="riskAndConstraint">风险预测及制约因素:</label>
-                                        <textarea class="form-control input-sm" type="text" name="riskAndConstraint" id="riskAndConstraint"></textarea>
+                                        <textarea class="form-control input-sm required" type="text" name="riskAndConstraint" id="riskAndConstraint"></textarea>
                                         <label for="planningAndVision">发展规划与创业愿景:</label>
-                                        <textarea class="form-control input-sm" type="text" name="planningAndVision" id="planningAndVision"></textarea>
+                                        <textarea class="form-control input-sm required" type="text" name="planningAndVision" id="planningAndVision"></textarea>
 
                                         <label for="fundAndBudget">项目立项经费使用预算:</label>
-                                        <textarea class="form-control input-sm" type="text" name="fundAndBudget" id="fundAndBudget"></textarea>
+                                        <textarea class="form-control input-sm required" type="text" name="fundAndBudget" id="fundAndBudget"></textarea>
                                         <label for="expectedResult">项目预期成果:</label>
-                                        <textarea class="form-control input-sm" type="text" name="expectedResult" id="expectedResult"></textarea>
+                                        <textarea class="form-control input-sm required" type="text" name="expectedResult" id="expectedResult"></textarea>
                                         <label>申请人承诺:</label>
-                                        <textarea class="form-control input-sm" type="text" placeholder="我保证上述填报内容的真实性。如果获得资助， 我与本项目组成员将负责。 "></textarea>
-                                        <label class="pull-right"> 签名：<input type="text" style="height: 25px;"></label>
-                                        <label class="pull-right"> 时间：<input type="date"></label>
+                                        <textarea class="form-control input-sm required" type="text" placeholder="我保证上述填报内容的真实性。如果获得资助， 我与本项目组成员将负责。 "></textarea>
+                                        <label class="pull-right"> 签名：<input class="required" type="text" style="height: 25px;"></label>
+                                        <label class="pull-right"> 时间：<input class="required" type="date"></label>
 
 
                                     </div>
+                                        <div class="box-footer">
+                                            <button type="submit" class="btn btn-info pull-right ">完成</button>
+                                        </div>
+                                    </fieldset>
                                 </form>
                             </div>
                             <!-- /.box-body -->
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-info pull-right ">完成</button>
-                            </div>
+
 
 
                             <!-- /.box-footer -->
@@ -811,6 +817,9 @@ desired effect
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 <script src="../js/baoming.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
