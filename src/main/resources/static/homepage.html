@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link href="css/Homepage/homepage.css" rel="stylesheet">
@@ -243,59 +243,15 @@
                     <div class="message-title text">
                         创业年会
                     </div>
-                    <div class="all-content">
+                    <div class="all-content" id="videoVue">
                         <div class="container">
-                            <div class="row news-margin">
-                                <div class="col-md-5">
+                            <div class="row news-margin" v-for="n in 3">
+                                <div class="col-md-5"  v-for="(item,index) in partVideoList(n,2)">
                                     <div class="row">
                                         <div class="col-md-5">
-                                            <img class="news-img" src="img/news.jpg">
+                                            <img class="news-img"  v-bind:src="item.titleImage">
                                         </div>
-                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <img class="news-img" src="img/news.jpg">
-                                        </div>
-                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row news-margin">
-                                <div class="col-md-5">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <img class="news-img" src="img/news.jpg">
-                                        </div>
-                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <img class="news-img" src="img/news.jpg">
-                                        </div>
-                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row news-margin">
-                                <div class="col-md-5">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <img class="news-img" src="img/news.jpg">
-                                        </div>
-                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <img class="news-img" src="img/news.jpg">
-                                        </div>
-                                        <div class="col-md-6">国际学院学生赴阿德莱德大学参加海外语言教学实践活动</div>
+                                        <div class="col-md-6">{{item.title|abbreviationContent}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -377,6 +333,7 @@
 <hr>
 <br>
 
+<section id="homeVue">
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12 col-md-7" style="left: 10%;">
@@ -388,12 +345,12 @@
                 <div class="container">
                     <div class="row" style="width: 700px;">
                         <div class="project-size project-font col-xs-6 col-md-4">
-                            <table class="table border" id="CXXLTitle_jx">
+                            <table class="table border">
                                 <thead>
                                 创新训练项目
                                 </thead>
                                 <tbody>
-                                <tr v-for="(CXXLProject_jx,index) in CXXLProjects_jx " v-if="index<5"  @click="CXXLProject_jx(CXXLProject_jx.id)">
+                                <tr v-for="(CXXLProject_jx,index) in excellentInnovate " v-if="index<5"  @click="getCXXLJXId(CXXLProject_jx.id)">
                                     <td>
                                         <a :href="'approval/detail/'+'CXXLProject_jx.id'">
                                             {{CXXLProject_jx.name}}
@@ -409,12 +366,12 @@
                             </table>
                         </div>
                         <div class="project-size project-font col-xs-6 col-md-4">
-                            <table class="table border" id="CYXLTitle_jx">
+                            <table class="table border">
                                 <thead>
                                 创业训练项目
                                 </thead>
                                 <tbody>
-                                <tr v-for="(CYXLProjects_jx,index) in CYXLProjects_jx " v-if="index<5"  @click="getCYXLJXId(CYXLProjects_jx.id)">
+                                <tr v-for="(CYXLProjects_jx,index) in excellentVenture " v-if="index<5"  @click="getCYXLJXId(project.id)">
                                     <td>
                                         <a :href="'approval/detail/'+'CYXLProjects_jx.id'">
                                             {{CYXLProjects_jx.name}}
@@ -430,12 +387,12 @@
                             </table>
                         </div>
                         <div class="project-size project-font col-xs-6 col-md-4">
-                            <table class="table border" id="CYSJTitle_jx">
+                            <table class="table border">
                                 <thead>
-                                创新训练项目
+                                创业实践项目
                                 </thead>
                                 <tbody>
-                                <tr v-for="(CYSJProjects_jx,index) in CYSJProjects_jx " v-if="index<5"  @click="getCYSJJXId(CYSJProjects_jx.id)">
+                                <tr v-for="(CYSJProjects_jx,index) in excellentPractice " v-if="index<5"  @click="getCYSJJXId(CYSJProjects_jx.id)">
                                     <td>
                                         <a :href="'approval/detail/'+'CYSJProjects_jx.id'">
                                             {{CYSJProjects_jx.name}}
@@ -503,35 +460,19 @@
 </div>
 
 <div class="cyrw-content">
-    <div class="cyrw">
-        <img class="cxrw-img" src="img/cxrw-img1.jpg">
-        <div class="cxrw-text1">
-            汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。
-        </div>
+
+
+    <div class="cyrw"  v-for="(item,index) in partTalent">
+        <img class="cxrw-img"  v-bind:src="item.titleImage" >
+        <div class="cxrw-text1">{{item.content|abbreviationContent}}</div>
     </div>
-    <div class="cyrw">
-        <img class="cxrw-img" src="img/cxrw-img1.jpg">
-        <div class="cxrw-text1">
-            汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。
-        </div>
-    </div>
-    <div class="cyrw">
-        <img class="cxrw-img" src="img/cxrw-img1.jpg">
-        <div class="cxrw-text1">
-            汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。
-        </div>
-    </div>
-    <div class="cyrw">
-        <img class="cxrw-img" src="img/cxrw-img1.jpg">
-        <div class="cxrw-text1">
-            汤唯，1979年10月7日出生于浙江杭州，华语影视女演员，毕业于中央戏剧学院导演系本科。
-        </div>
-    </div>
+
+
     <div class="cxrw-more cyrw">
         <a href=""><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>&nbsp;&nbsp;更多</a>
     </div>
 </div>
-
+</section>
 <br><br><br><br><br><br>
 <footer style="background-color: cadetblue ;text-align: center">
     <p>
