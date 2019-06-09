@@ -38,7 +38,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().loginPage("/student/login").defaultSuccessUrl("/home")
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/student/login");
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/student/login")
+                .and()
+                .csrf().disable();
     }
 
     /**
