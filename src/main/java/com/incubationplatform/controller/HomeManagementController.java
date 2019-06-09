@@ -6,8 +6,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.incubationplatform.common.Const;
 import com.incubationplatform.common.ServerResponse;
 import com.incubationplatform.pojo.Message;
+import com.incubationplatform.pojo.MessageVideo;
 import com.incubationplatform.pojo.Project;
 import com.incubationplatform.service.IMessageService;
+import com.incubationplatform.service.IMessageVideoService;
 import com.incubationplatform.service.IProjectService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ public class HomeManagementController {
 
     @Autowired
     private IMessageService iMessageService;
+    @Autowired
+    private IMessageVideoService iMessageVideoService;
 
     @Autowired
     private IProjectService iProjectService;
@@ -36,10 +40,17 @@ public class HomeManagementController {
                                          String messageClassification){
         if(messageClassification.equals(Const.MessageClassification.ANNOUNCEMENTS)||
            messageClassification.equals(Const.MessageClassification.CHARACTER_STYLE)||
-           messageClassification.equals(Const.MessageClassification.STUDY_SECTION)){
+           messageClassification.equals(Const.MessageClassification.STUDY_SECTION )||
+           messageClassification.equals(Const.MessageClassification.NEW)){
             IPage<Message> messageIPage = iMessageService.page(new Page<Message>(current,size),
                     new QueryWrapper<Message>()
                             .eq("classification", messageClassification)
+                            .orderByDesc("create_time"));
+            return ServerResponse.createBySuccess(messageIPage);
+        }
+        if (messageClassification.equals("创业年会")){
+            IPage<MessageVideo> messageIPage = iMessageVideoService.page(new Page<MessageVideo>(current,size),
+                    new QueryWrapper<MessageVideo>()
                             .orderByDesc("create_time"));
             return ServerResponse.createBySuccess(messageIPage);
         }
