@@ -89,6 +89,41 @@ public class HomeManagementController {
     }
 
 
+    @GetMapping("/del_video_message")
+    @ResponseBody
+    public ServerResponse deleteVideoMessage(String messageId){
+        if(iMessageVideoService.removeById(messageId)){
+            return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByError();
+    }
+
+    @PostMapping("/update_video_message")
+    @ResponseBody
+    public ServerResponse updateVideoMessageById(MessageVideo message){
+        if (message.getId() != null){
+            return ServerResponse.createByErrorMessage("id不存在");
+        }
+        if (iMessageVideoService.updateById(message)){
+            return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByErrorMessage("更新失败");
+    }
+
+    @GetMapping("/video_message_detail")
+    @ResponseBody
+    public ServerResponse getVideoMessageDetail(Integer messageId){
+        if (messageId == null){
+            return ServerResponse.createByErrorMessage("id为空");
+        }
+        MessageVideo message = iMessageVideoService.getById(messageId);
+        if (message != null){
+            return ServerResponse.createBySuccess(message);
+        }
+        return ServerResponse.createByErrorMessage("无法找到");
+    }
+
+
 
 
     @GetMapping("/get_project")
