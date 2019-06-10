@@ -47,81 +47,131 @@ $.ajax({
     }
 });
 
-
-/*
-    创新训练项目(立项)
- */
-var CXXL, CXXLProjects;
-$.ajax({
-    url: '/home/approval',
-    type: 'get',
-    success: function (response) {
-        CXXLProjects = response.data;
-        CXXL = new Vue({
-            el: '#CXXLTitle',
-            data: {
-                CXXLProjects: CXXLProjects,
-            },
-        methods:{
-            getCXXLLXId(id){
-                location.href="approval/detail/"+id;
+//
+// /*
+//     创新训练项目(立项)
+//  */
+// var CXXL, CXXLProjects;
+// $.ajax({
+//     url: '/home/approval',
+//     type: 'get',
+//     success: function (response) {
+//         CXXLProjects = response.data;
+//         CXXL = new Vue({
+//             el: '#CXXLTitle',
+//             data: {
+//                 CXXLProjects: CXXLProjects,
+//             },
+//         methods:{
+//             getCXXLLXId(id){
+//                 location.href="approval/detail/"+id;
+//             }
+//         }
+//         });
+//
+//         return;
+//     }
+// });
+//
+//
+// /*
+//     创业训练项目(立项)
+//  */
+// var CYXLProjects, CYXL;
+// $.ajax({
+//     url: '/home/approval',
+//     type: 'get',
+//     success: function (response) {
+//         CYXLProjects = response.data;
+//         CYXL = new Vue({
+//             el: '#CYXLTitle',
+//             data: {
+//                 CYXLProjects: CYXLProjects,
+//             },
+//             methods:{
+//                 getCYXLLXId(id){
+//                     location.href="approval/detail/"+id;
+//                 }
+//             }
+//         });
+//         return;
+//     }
+// });
+//
+//
+// /*
+//     创业实践项目(立项)
+//  */
+// var CYSJProject, CYSJ;
+// $.ajax({
+//     url: '/home/approval',
+//     type: 'get',
+//     success: function (response) {
+//         CYSJProjects = response.data;
+//         CYSJ = new Vue({
+//             el: '#CYSJTitle',
+//             data: {
+//                 CYSJProjects: CYSJProjects,
+//             },
+//             methods:{
+//                 getCYSJLXId(id){
+//                     location.href="approval/detail/"+id;
+//                 }
+//             }
+//         });
+//         return;
+//     }
+// });
+var projectVue = new Vue({
+    el:'#projectVue',
+    data: {
+        data:[],
+        talent: [],
+        link:[],
+        venture:[],
+        innovate:[],
+        practice:[]
+    },
+    created: function () {
+        var that=this;
+        $.ajax({
+            url:"/home/approval",
+            method:"GET",
+            success:function (data) {
+                that.data=data;
+                that.talent=data.data.talent;
+                that.link=data.data.link;
+                that.venture=data.data.venture;
+                that.innovate=data.data.innovate;
+                that.practice=data.data.practice;
+            }
+        });
+    },
+    computed: {
+        partTalent: function () {
+            if (this.talent.length > 5) {
+                return this.talent.slice(0, 5);
+            } else {
+                console.log(this.talent)
+                return this.talent;
             }
         }
-        });
-
-        return;
+    },
+    methods: {
+        //创新训练
+        getCXXLId(id) {
+            location.href = "approval/detail" + id;
+        },
+        //创业训练
+        getCYXLId(id) {
+            location.href = "approval/detail" + id;
+        },
+        //创业实践
+        getCYSJId(id) {
+            location.href = "approval/detail" + id;
+        }
     }
-});
-
-
-/*
-    创业训练项目(立项)
- */
-var CYXLProjects, CYXL;
-$.ajax({
-    url: '/home/approval',
-    type: 'get',
-    success: function (response) {
-        CYXLProjects = response.data;
-        CYXL = new Vue({
-            el: '#CYXLTitle',
-            data: {
-                CYXLProjects: CYXLProjects,
-            },
-            methods:{
-                getCYXLLXId(id){
-                    location.href="approval/detail/"+id;
-                }
-            }
-        });
-        return;
-    }
-});
-
-
-/*
-    创业实践项目(立项)
- */
-var CYSJProject, CYSJ;
-$.ajax({
-    url: '/home/approval',
-    type: 'get',
-    success: function (response) {
-        CYSJProjects = response.data;
-        CYSJ = new Vue({
-            el: '#CYSJTitle',
-            data: {
-                CYSJProjects: CYSJProjects,
-            },
-            methods:{
-                getCYSJLXId(id){
-                    location.href="approval/detail/"+id;
-                }
-            }
-        });
-        return;
-    }
-});
+    });
 
 <!--首屏渲染-->
 var homeVue = new Vue({
