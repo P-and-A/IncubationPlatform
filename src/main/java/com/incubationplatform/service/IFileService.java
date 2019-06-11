@@ -20,4 +20,6 @@ public interface IFileService extends IService<File> {
     public ServerResponse uploadCredentialFile(List<MultipartFile> files, String path, String studentId);
 
     public ServerResponse<String> uploadPostProjectFile(MultipartFile file, String path,String studentId);
+
+    public String upload(MultipartFile file, String path);
 }
