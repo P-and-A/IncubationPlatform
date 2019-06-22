@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 /**
  * @author liaochaofan
  * @date 2019/6/1 18:19
@@ -32,6 +34,22 @@ public class HomeManagementController {
 
     @Autowired
     private IProjectService iProjectService;
+
+    @GetMapping("/add_message")
+    @ResponseBody
+    public ServerResponse addMessagePage(@RequestBody Message message){
+        if(message.getClassification().equals(Const.MessageClassification.ANNOUNCEMENTS)||
+                message.getClassification().equals(Const.MessageClassification.CHARACTER_STYLE)||
+                message.getClassification().equals(Const.MessageClassification.STUDY_SECTION )||
+                message.getClassification().equals(Const.MessageClassification.NEW)){
+                message.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+                if (iMessageService.save(message)){
+                    return ServerResponse.createBySuccess();
+                }
+            return ServerResponse.createByError();
+        }
+        return ServerResponse.createByError();
+    }
 
     @GetMapping("/get_message")
     @ResponseBody
@@ -93,6 +111,15 @@ public class HomeManagementController {
     @ResponseBody
     public ServerResponse deleteVideoMessage(String messageId){
         if(iMessageVideoService.removeById(messageId)){
+            return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByError();
+    }
+
+    @PostMapping("/add_video_message")
+    @ResponseBody
+    public ServerResponse addVideoMessagePage(@RequestBody MessageVideo videoMessage){
+        if (iMessageVideoService.save(videoMessage)){
             return ServerResponse.createBySuccess();
         }
         return ServerResponse.createByError();
