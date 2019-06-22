@@ -35,7 +35,7 @@ public class HomeManagementController {
     @Autowired
     private IProjectService iProjectService;
 
-    @GetMapping("/add_message")
+    @PostMapping("/add_message")
     @ResponseBody
     public ServerResponse addMessagePage(@RequestBody Message message){
         if(message.getClassification().equals(Const.MessageClassification.ANNOUNCEMENTS)||
