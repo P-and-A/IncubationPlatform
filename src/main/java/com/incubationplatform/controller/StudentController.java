@@ -58,11 +58,26 @@ public class StudentController {
         return iProjectService.submitProject(submitProjectVo.project,submitProjectVo.team,submitProjectVo.teacherList);
     }
 
+    /**
+     * 提交结项文档接口，需要学生id
+     * @param studentId
+     * @param request
+     * @param upload_file
+     * @return
+     */
     @RequestMapping(value = "/upload_post_project_file",method = RequestMethod.POST)
     public ServerResponse uploadPostProjectFile(String studentId, HttpServletRequest request, @RequestParam(value = "upload_file",required = false) MultipartFile upload_file){
         String path = request.getSession().getServletContext().getRealPath("upload");
         return iFileService.uploadPostProjectFile(upload_file,path,studentId);
     }
+
+    /**
+     * 提交立项证明材料接口，需要学生id
+     * @param studentId
+     * @param request
+     * @param upload_file
+     * @return
+     */
     @RequestMapping(value = "/upload_credential_file",method = RequestMethod.POST)
     public ServerResponse uploadCredentialFile(String studentId, HttpServletRequest request, @RequestParam(value = "upload_file",required = false) List<MultipartFile> upload_file){
         String path = request.getSession().getServletContext().getRealPath("upload");
@@ -81,7 +96,7 @@ public class StudentController {
     @RequestMapping("/student/change_password")
     public ServerResponse updateUserPassword(String newPassword,String oldPassword){
         Student user = (Student) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        ServerResponse serverResponse=iStudentService.updatePassword(user,newPassword,oldPassword);
+        ServerResponse serverResponse = iStudentService.updatePassword(user,newPassword,oldPassword);
         return serverResponse;
     }
 }
