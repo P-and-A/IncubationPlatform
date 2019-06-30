@@ -8,9 +8,11 @@ import com.incubationplatform.common.ServerResponse;
 import com.incubationplatform.pojo.Message;
 import com.incubationplatform.pojo.MessageVideo;
 import com.incubationplatform.pojo.Project;
+import com.incubationplatform.pojo.Sort;
 import com.incubationplatform.service.IMessageService;
 import com.incubationplatform.service.IMessageVideoService;
 import com.incubationplatform.service.IProjectService;
+import com.incubationplatform.service.ISortService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,9 @@ public class HomeManagementController {
 
     @Autowired
     private IProjectService iProjectService;
+
+    @Autowired
+    private ISortService iSortService;
 
     @PostMapping("/add_message")
     @ResponseBody
@@ -128,7 +133,7 @@ public class HomeManagementController {
     @PostMapping("/update_video_message")
     @ResponseBody
     public ServerResponse updateVideoMessageById(MessageVideo message){
-        if (message.getId() != null){
+        if (message.getId() == null){
             return ServerResponse.createByErrorMessage("id不存在");
         }
         if (iMessageVideoService.updateById(message)){
@@ -199,5 +204,18 @@ public class HomeManagementController {
             return ServerResponse.createBySuccess(project);
         }
         return ServerResponse.createByErrorMessage("无法找到");
+    }
+
+
+    /**
+     * 置顶
+     * @param classification 分类
+     * @param projectId 项目id,如新闻消息的id,结项项目id
+     * @return
+     */
+    @GetMapping("/top")
+    @ResponseBody
+    public ServerResponse toTop(String classification,String projectId){
+        return iSortService.toTop(classification, projectId);
     }
 }
