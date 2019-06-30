@@ -69,13 +69,11 @@ public class SortServiceImpl extends ServiceImpl<SortDao, Sort> implements ISort
     }
 
     public ServerResponse delSort(String classification,String projectId){
-        Map<String,Object> columMap = new HashMap<>();
-        columMap.put("classification", classification);
         Sort sort = sortDao.selectById(projectId);
         if (sort == null){
             return ServerResponse.createByError();
         }
-        List<Sort> sortList = sortDao.selectList(new QueryWrapper<Sort>().orderByDesc("order"));
+        List<Sort> sortList = sortDao.selectList(new QueryWrapper<Sort>().eq("ckassification",classification).orderByDesc("order"));
         for (Sort item : sortList){
             if (item.getOrder() > sort.getOrder()){
                 item.setOrder(item.getId()-1);
@@ -85,5 +83,10 @@ public class SortServiceImpl extends ServiceImpl<SortDao, Sort> implements ISort
             }
         }
         return ServerResponse.createBySuccess("置顶成功");
+    }
+
+    public ServerResponse getSorts(String classification){
+        List<Sort> sortList = sortDao.selectList(new QueryWrapper<Sort>().eq("ckassification",classification).orderByDesc("order"));
+        return ServerResponse.createBySuccess(sortList);
     }
 }

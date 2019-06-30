@@ -18,4 +18,6 @@ public interface ISortService extends IService<Sort> {
     public ServerResponse addSort(Sort sort);
 
     public ServerResponse delSort(String classification,String projectId);
+
+    public ServerResponse getSorts(String classification);
 }

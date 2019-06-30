@@ -48,5 +48,10 @@ public class SortController {
         return iSortService.delSort(classification, projectId);
     }
 
+    @RequestMapping("/get")
+    @ResponseBody
+    public ServerResponse getSort(String classification){
+        return iSortService.getSorts(classification);
+    }
 }
 
