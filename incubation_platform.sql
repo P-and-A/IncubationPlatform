@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50534
 File Encoding         : 65001
 
-Date: 2019-03-28 12:03:22
+Date: 2019-06-30 19:53:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -149,17 +149,18 @@ CREATE TABLE `message` (
 -- ----------------------------
 -- Records of message
 -- ----------------------------
-INSERT INTO `message` VALUES ('123', '关于举办第十一届全国大学生创新创业年会的通知', '这是通知正文内容', '创客空间', '通知公告', null, null, '1', '2018-11-26 20:46:38');
+INSERT INTO `message` VALUES ('123', '关于举办第十一届全国大学生创新创业年会的通知2', '这是通知正文内容', '创客空间', '通知公告', null, null, '1', '2018-11-26 20:46:38');
 INSERT INTO `message` VALUES ('124', '第十一届全国大学生创新创业年会入选项目提交和参会须知', '这是通知<br>正文内容', '创客空间', '通知公告', '', null, '1', '2019-03-14 20:46:38');
 INSERT INTO `message` VALUES ('125', '我校召开副院长（副主任）工作会议', '通报了期末考试进展情况，对教务处工作进行了总结。', '广州商学院', '新闻动态', null, null, '2', '2019-03-14 19:36:35');
 INSERT INTO `message` VALUES ('127', '加盟干洗店投资多少钱', '洗衣机可以说是一个伟大的发明，它为我们节约了很多的时间和精力，给我们的生活带来了不少的便利。然而很多人发现，想羊毛衣这样的衣服不能。。。', '快马商机网', '创业学习园地', null, null, '4', '2019-03-14 19:54:16');
+INSERT INTO `message` VALUES ('128', '第十一届全国大学生创新创业年会入选项目提交和参会须知', '这是通知<br>正文内容', '创客空间', '通知公告', '', null, '1', '2019-03-14 20:46:38');
 
 -- ----------------------------
 -- Table structure for message_video
 -- ----------------------------
 DROP TABLE IF EXISTS `message_video`;
 CREATE TABLE `message_video` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `vedio_url` varchar(255) DEFAULT NULL COMMENT '视频链接',
   `title_image` varchar(255) DEFAULT NULL COMMENT '标题图片',
@@ -168,7 +169,7 @@ CREATE TABLE `message_video` (
   `status` tinyint(4) DEFAULT NULL COMMENT '0表示存在，1表示删除',
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of message_video
@@ -297,6 +298,22 @@ INSERT INTO `role` VALUES ('4385b1de49b7566dbc8a1f828985c60a', 'teacher', null);
 INSERT INTO `role` VALUES ('554356f0764a528f9b00187c9fd53725', 'student', null);
 INSERT INTO `role` VALUES ('89e48c0d0c455c128e388432e851ab34', 'vice_admin', null);
 INSERT INTO `role` VALUES ('f40baec93d615bd2a68c9432bb33b8d9', 'admin', null);
+
+-- ----------------------------
+-- Table structure for sort
+-- ----------------------------
+DROP TABLE IF EXISTS `sort`;
+CREATE TABLE `sort` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` varchar(255) NOT NULL COMMENT '分类的id',
+  `classification` varchar(255) DEFAULT NULL COMMENT '分类类别',
+  `order` int(11) DEFAULT NULL COMMENT '顺序 1-10 ',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sort
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for student
