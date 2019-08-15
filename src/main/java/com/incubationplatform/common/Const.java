@@ -28,6 +28,15 @@ public class Const {
         public String getStatus() {
             return status;
         }
+
+        public static String getStatusByCode(int code){
+            for (ProjectStatus projectStatus : Const.ProjectStatus.values()){
+                if(projectStatus.code == code){
+                    return projectStatus.status;
+                }
+            }
+            return null;
+        }
     }
     public interface ProjectClassification{
         String EXCELLENT_INNOVATE = "创新训练";
@@ -41,6 +50,11 @@ public class Const {
         String CHARACTER_STYLE = "创业人物风采";
         String NEW = "新闻动态";
         String STUDY_SECTION = "学习园地";
+    }
+
+    public interface FileClassfication{
+        String CREDENTIAL_File ="证明材料";
+        String POST_PROJECT_File = "结项文档";
     }
 
 }

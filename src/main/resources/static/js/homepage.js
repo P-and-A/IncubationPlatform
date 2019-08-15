@@ -16,488 +16,181 @@ $(function () {
 /*
 通知通告
  */
-var TZTG;
-// $.ajax({
-//     url: '/home/message',
-//     type: 'get',
-//     success: function (response) {
-//         message = response.data;
-//
-//         return;
-//     }
-// });
-var message = [{
-    id:"123456",
-    title:"关于2019年大学生创新创业比赛的结项通知",
-    createTime:"2019-03-11"
-},{
-    id:"123456",
-    title:"关于2019年大学生创新创业比赛的结项通知",
-    createTime:"2018-11-26 20:46:38"
-},{
-    id:"123456",
-    title:"关于2019年大学生创新创业比赛的结项通知",
-    createTime:"2018-11-26 20:46:38"
-},{
-    id:"123456",
-    title:"关于2019年大学生创新创业比赛的结项通知",
-    createTime:"2018-11-26 20:46:38"
-},{
-    id:"123456",
-    title:"关于2019年大学生创新创业比赛的结项通知",
-    createTime:"2018-11-26 20:46:38"
-},{
-    id:"123456",
-    title:"关于2019年大学生创新创业比赛的结项通知",
-    createTime:"2018-11-26 20:46:38"
-},{
-    id:"123456",
-    title:"关于2019年大学生创新创业比赛的结项通知",
-    createTime:"2018-11-26 20:46:38"
-}];
-TZTG = new Vue({
-    el: '#message1',
+var TZTG, message;
+$.ajax({
+    url: '/home/message',
+    type: 'get',
+    success: function (response) {
+        message = response.data;
+        TZTG = new Vue({
+            el: '#message1',
+            data: {
+                message: message,
+            },
+            methods: {
+                getMessageId(id) {
+                    location.href = "message/detail/" + id;
+                }
+            },
+            filters: {
+                formatDate(time) {
+                    var date = new Date(time);
+                    var year = date.getFullYear();
+                    var month = date.getMonth();
+                    var day = date.getDate();
+                    return year + '-' + (month + 1) + '-' + day;
+                }
+            },
+
+        });
+        return;
+    }
+});
+
+
+var projectVue = new Vue({
+    el:'#projectVue',
     data: {
-        message: message,
+        data:[],
+        talent: [],
+        link:[],
+        venture:[],
+        innovate:[],
+        practice:[]
     },
-    methods:{
-        getMessageId(id){
-            alert(location.href="/manager/activity/"+id);
+    created: function () {
+        var that=this;
+        $.ajax({
+            url:"/home/approval",
+            method:"GET",
+            success:function (data) {
+                that.data=data;
+                that.talent=data.data.talent;
+                that.link=data.data.link;
+                that.venture=data.data.venture;
+                that.innovate=data.data.innovate;
+                that.practice=data.data.practice;
+            }
+        });
+    },
+    computed: {
+        partTalent: function () {
+            if (this.talent.length > 5) {
+                return this.talent.slice(0, 5);
+            } else {
+                console.log(this.talent)
+                return this.talent;
+            }
         }
     },
+    methods: {
+        //创新训练
+        getCXXLId(id) {
+            location.href = "approval/detail" + id;
+        },
+        //创业训练
+        getCYXLId(id) {
+            location.href = "approval/detail" + id;
+        },
+        //创业实践
+        getCYSJId(id) {
+            location.href = "approval/detail" + id;
+        }
+    }
+});
+
+<!--首屏渲染-->
+var homeVue = new Vue({
+    el: '#homeVue',
     filters: {
-        formatDate(time) {
-            var date = new Date(time);
-            var year = date.getFullYear();
-            var month = date.getMonth();
-            var day = date.getDate();
-            return year+'-'+(month+1)+'-'+day;
+        abbreviationContent: function (content) {
+            if (content.length > 40) {
+                return (content.slice(0, 40)).concat("......");
+            } else {
+                return content;
+            }
         }
     },
-
-});
-
-/*
-    创新训练项目(立项)
- */
-var CXXL;
-// $.ajax({
-//     url: '/home/approval',
-//     type: 'get',
-//     success: function (response) {
-//         CXXLProjects = response.data;
-//
-//         return;
-//     }
-// });
-var CXXLProjects = [{
-    id : '123456',
-    name :'创序软件工作室',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'创序软件工作室',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'bing bing 水果店',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'广商纪念品',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},,{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-}]
-CXXL = new Vue({
-    el: '#CXXLTitle',
     data: {
-        CXXLProjects: CXXLProjects,
+        data:[],
+        talent: [],
+        link:[],
+        excellentVenture:[],
+        excellentInnovate:[],
+        excellentPractice:[]
+    },
+    created: function () {
+        var that=this;
+        $.ajax({
+            url:"/home",
+            method:"GET",
+            success:function (data) {
+                that.data=data;
+                that.talent=data.data.talent;
+                that.link=data.data.link;
+                that.excellentVenture=data.data.excellentVenture;
+                that.excellentInnovate=data.data.excellentInnovate;
+                that.excellentPractice=data.data.excellentPractice;
+            }
+        });
+    },
+    computed: {
+        partTalent: function () {
+            if (this.talent.length > 5) {
+                return this.talent.slice(0, 5);
+            } else {
+                console.log(this.talent)
+                return this.talent;
+            }
+        }
+    },
+    methods: {
+        //创新训练
+        getCXXLJXId(id) {
+                location.href = "approval/detail" + id;
+        },
+        //创业训练
+        getCYXLJXId(id) {
+            location.href = "approval/detail" + id;
+        },
+        //创业实践
+        getCYSJJXId(id) {
+            location.href = "approval/detail" + id;
+        }
     }
 });
 
-
-/*
-    创业训练项目(立项)
- */
-var CYXLProjects = [{
-    id : '123456',
-    name :'创序软件工作室',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'创序软件工作室',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'bing bing 水果店',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'广商纪念品',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},,{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-}]
-var CYXL ;
-// $.ajax({
-//     url: '/home/approval',
-//     type: 'get',
-//     success: function (response) {
-//         CYXLProjects = response.data;
-//
-//         return;
-//     }
-// });
-CYXL = new Vue({
-    el: '#CYXLTitle',
-    data: {
-        CYXLProjects: CYXLProjects,
+<!--创业年会-->
+var videoVue = new Vue({
+    el: '#videoVue',
+    filters: {
+        abbreviationContent: function (title) {
+            if (title.length > 20) {
+                return (title.slice(0, 20)).concat("......");
+            } else {
+                return title;
+            }
+        }
     },
-});
-
-/*
-    创业训练项目(立项)
- */
-var CYSJProjects = [{
-    id : '123456',
-    name :'创序软件工作室',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'创序软件工作室',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'bing bing 水果店',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'广商纪念品',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},,{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-}]
-var CYSJ;
-// $.ajax({
-//     url: '/home/approval',
-//     type: 'get',
-//     success: function (response) {
-//         CYSJProjects = response.data;
-//
-//         return;
-//     }
-// });
-CYSJ = new Vue({
-    el: '#CYSJTitle',
-    data: {
-        CYSJProjects: CYSJProjects,
+    created: function () {
+        $.ajax({
+            url:'/home/annual_meeting',
+            method:"GET",
+            success:function (result) {
+                if (result.net === 2000) {
+                    this.videoList=result.data.videlList;
+                }else {
+                    alert(result.msg)
+                }
+            }
+        })
     },
-});
-
-
-
-
-/*
-    创新训练项目(立项)
- */
-var CXXL_JX;
-// $.ajax({
-//     url: '/home/approval',
-//     type: 'get',
-//     success: function (response) {
-//         CXXLProjects = response.data;
-//
-//         return;
-//     }
-// });
-var CXXLProjects_jx = [{
-    id : '123456',
-    name :'创序软件工作室',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'创序软件工作室',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'bing bing 水果店',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'广商纪念品',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},,{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-}]
-CXXL_JX = new Vue({
-    el: '#CXXLTitle_jx',
     data: {
-        CXXLProjects_jx: CXXLProjects_jx,
+        videoList: []
+    },
+    methods: {
+        partVideoList: function (index, Offset) {
+            return this.videoList.slice(index * Offset - 2, index * Offset)
+        }
     }
-});
-
-
-/*
-    创业训练项目(立项)
- */
-var CYXLProjects = [{
-    id : '123456',
-    name :'创序软件工作室',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'创序软件工作室',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'bing bing 水果店',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'广商纪念品',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},,{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-}]
-var CYXL ;
-// $.ajax({
-//     url: '/home/approval',
-//     type: 'get',
-//     success: function (response) {
-//         CYXLProjects = response.data;
-//
-//         return;
-//     }
-// });
-CYXL = new Vue({
-    el: '#CYXLTitle',
-    data: {
-        CYXLProjects: CYXLProjects,
-    },
-});
-
-/*
-    创业训练项目(立项)
- */
-var CYSJProjects = [{
-    id : '123456',
-    name :'创序软件工作室',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'创序软件工作室',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'bing bing 水果店',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'广商纪念品',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-},,{
-    id : '123456',
-    name :'老司机plus',
-    classification:'创业实践',
-    grade:'国家级',
-    introduce:'这是一个工作室',
-    create_time:'2018-11-28 01:44:54'
-}]
-var CYSJ;
-// $.ajax({
-//     url: '/home/approval',
-//     type: 'get',
-//     success: function (response) {
-//         CYSJProjects = response.data;
-//
-//         return;
-//     }
-// });
-CYSJ = new Vue({
-    el: '#CYSJTitle',
-    data: {
-        CYSJProjects: CYSJProjects,
-    },
 });

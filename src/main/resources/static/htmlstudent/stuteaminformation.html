@@ -119,10 +119,12 @@ desired effect
         <ul class="sidebar-menu" data-widget="tree" style="margin-top:2px">
 
             <!-- Optionally, you can add icons to the links -->
+
             <li><a href="studentfirst.html"><i class="fa fa-link"></i> <span>报名</span></a></li>
             <li><a href="stusubmit.html"><i class="fa fa-link"></i> <span>递交资料</span></a></li>
             <li><a href="stuperinformation.html"><i class="fa fa-link"></i> <span>个人信息</span></a></li>
             <li class="active"><a href="stuteaminformation.html"><i class="fa fa-link"></i> <span>团队信息</span></a></li>
+
 
 
         </ul>
@@ -132,7 +134,7 @@ desired effect
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" id="studentProject">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="ziti">
@@ -145,16 +147,153 @@ desired effect
             <hr>
 
         </section>
-
+<from id="changeProject" action="student/declare">
         <!-- Main content -->
         <section class="content container-fluid" style="background-color: white">
+
 
             </span>
             <div class="card">
                 <div class="card-header">
                     <h4>信息管理</h4>
+
                 </div>
                 <div class="card-body">
+                    <div class="selects">
+                        <label>负责人数：</label>
+                        <select id="mainPeason" name="mainPeason" style="height: 35px" >
+                            <option value="1" name="mainPeason" :selected="partMainPersonNum?true:false">1人
+                            </option>
+                            <option value="2" name="mainPeason" :selected="partMainPersonNum?false:true">2人</option>
+                        </select>
+                    </div>
+                    <div id="oneMainPeason" v-if="partMainPersonNum === 1">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td rowspan="4" style="vertical-align: middle">负责人信息</td>
+                                <td colspan="2" style="vertical-align: middle">姓名</td>
+                                <td colspan="2" style="vertical-align: middle">学校</td>
+                                <td colspan="2" style="vertical-align: middle">二级学院</td>
+                                <td colspan="2" style="vertical-align: middle">年级</td>
+                                <td colspan="2" style="vertical-align: middle">专业</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "  v-model="mainPerson.name"
+                                           size="16" type="text" name="name" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls " v-model="mainPerson.belongUniversity"
+                                           size="16" type="text" name="belongUniversity" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls" v-model="mainPerson.belongCollege"
+                                           size="16" type="text" name="belongCollege" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls  " v-model="mainPerson.grade"
+                                           size="16" type="text" name="grade" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls " v-model="mainPerson.specialty"
+                                           size="16" type="text" name="specialty" required/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="vertical-align: middle">班级</td>
+                                <td colspan="2" style="vertical-align: middle">学号</td>
+                                <td colspan="2" style="vertical-align: middle">手机号</td>
+                                <td colspan="2" style="vertical-align: middle">邮箱</td>
+                                <td colspan="2" style="vertical-align: middle">QQ号</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input class="form-control inputcls " v-model="mainPerson.class"
+                                           size="16" type="text" name="grade" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls " v-model="mainPerson.studentId"
+                                           size="16" type="text" name="studentId" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "v-model="mainPerson.phone"
+                                           size="16" type="text" name="phone"  minlength="11" maxlength="11"  required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "v-model="mainPerson.email"
+                                           size="16" type="email" name="email" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "v-model="mainPerson.qq"
+                                           size="16" type="text" name="qq" required/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="twoMainPeason" style="display: none;" v-if="partMainPersonNum===2">
+                        <table class="table table-bordered" v-for="mainPersons in mainPerson">
+                            <tr>
+                                <td rowspan="4" style="vertical-align: middle">负责人信息</td>
+                                <td colspan="2" style="vertical-align: middle">姓名</td>
+                                <td colspan="2" style="vertical-align: middle">学校</td>
+                                <td colspan="2" style="vertical-align: middle">二级学院</td>
+                                <td colspan="2" style="vertical-align: middle">年级</td>
+                                <td colspan="2" style="vertical-align: middle">专业</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "  v-model="mainPerson.name"
+                                           size="16" type="text" name="name" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls " v-model="mainPerson.belongUniversity"
+                                           size="16" type="text" name="belongUniversity" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls" v-model="mainPerson.belongCollege"
+                                           size="16" type="text" name="belongCollege" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls  " v-model="mainPerson.grade"
+                                           size="16" type="text" name="grade" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls " v-model="mainPerson.specialty"
+                                           size="16" type="text" name="specialty" required/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="vertical-align: middle">班级</td>
+                                <td colspan="2" style="vertical-align: middle">学号</td>
+                                <td colspan="2" style="vertical-align: middle">手机号</td>
+                                <td colspan="2" style="vertical-align: middle">邮箱</td>
+                                <td colspan="2" style="vertical-align: middle">QQ号</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input class="form-control inputcls " v-model="mainPerson.class"
+                                           size="16" type="text" name="grade" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls " v-model="mainPerson.studentId"
+                                           size="16" type="text" name="studentId" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "v-model="mainPerson.phone"
+                                           size="16" type="text" name="phone"  minlength="11" maxlength="11"  required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "v-model="mainPerson.email"
+                                           size="16" type="email" name="email" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "v-model="mainPerson.qq"
+                                           size="16" type="text" name="qq" required/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
 
                     <table id="team" class="table table-bordered table-hover dataTable" role="grid"
                            aria-describedby="example2_info">
@@ -193,6 +332,243 @@ desired effect
 
                         </tbody>
                     </table>
+
+<!--                     <div class="selects">
+                        <label>成员数目：</label>
+                        <el-select id="peason" name="peason" style="height: 35px" v-model="formData.jsonStr" value-key="desc" placeholder="请选择">
+                            <el-option
+                                    v-for="persons in person"（data是后台给的数据）
+                                    :key="persons.value"
+                                    :label="persons.text"
+                                    :value="persons.value"（此item即是要传给后台的对象）>
+                            </el-option>
+                        </el-select>
+                    </div>
+                    <div id="Peasons">
+                        <table class="table table-bordered" id="people" style="display: none">
+                            <tr>
+                                <td rowspan="4" id="peasonsFirstTd" style="vertical-align: middle">成员<br>信息</td>
+                                <td colspan="2" style="vertical-align: middle">姓名</td>
+                                <td colspan="2" style="vertical-align: middle">学校</td>
+                                <td colspan="2" style="vertical-align: middle">二级学院</td>
+                                <td colspan="2" style="vertical-align: middle">年级</td>
+                                <td colspan="2" style="vertical-align: middle">专业</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "
+                                           size="16" type="text" name="name" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "
+                                           size="16" type="text" name="belongUniversity" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "
+                                           size="16" type="text" name="belongCollege" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "
+                                           size="16" type="text" name="grade" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "
+                                           size="16" type="text" name="specialty" required/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="vertical-align: middle">班级</td>
+                                <td colspan="2" style="vertical-align: middle">学号</td>
+                                <td colspan="2" style="vertical-align: middle">手机号</td>
+                                <td colspan="2" style="vertical-align: middle">邮箱</td>
+                                <td colspan="2" style="vertical-align: middle">QQ号</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "
+                                           size="16" type="text" name="grade" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "
+                                           size="16" type="text" name="studentId" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "
+                                           size="16" type="text" name="phone" minlength="11" maxlength="11" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "
+                                           size="16" type="email" name="email" required/>
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls "
+                                           size="16" type="text" name="qq" required/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <label style="margin-top: 30px">项目组成员近3年获奖及成果情况(无可不作填写):</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">获奖者一</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <label for="awardWinner1">获奖者姓名：</label>
+                                    <input type="text" name="awardWinner1" id="awardWinner1" ><br>
+                                    <label for="awardName1">奖项名称：</label>
+                                    <input type="text" name="awardName1" id="awardName1"><br>
+                                    <label for="awardTime1">获奖时间及颁发单位：</label>
+                                    <input type="text" name="awardTime1" id="awardTime1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">获奖者二</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <label for="awardWinner2">获奖者姓名：</label>
+                                    <input type="text" name="awardWinner2" id="awardWinner2"><br>
+                                    <label for="awardName2">奖项名称：</label>
+                                    <input type="text" name="awardName2" id="awardName2"><br>
+                                    <label for="awardTime2">获奖时间及颁发单位：</label>
+                                    <input type="text" name="awardTime2" id="awardTime2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">获奖者三</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <label for="awardWinner3">获奖者姓名：</label>
+                                    <input type="text" name="awardWinner3" id="awardWinner3"><br>
+                                    <label for="awardName3">奖项名称：</label>
+                                    <input type="text" name="awardName3" id="awardName3"><br>
+                                    <label for="awardTime3">获奖时间及颁发单位：</label>
+                                    <input type="text" name="awardTime3" id="awardTime3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="selects">
+                        <label>指导老师人数：</label>
+                        <select id="tutorNumber" name="tutorNumber" style="height: 35px">
+                            <option value="1" name="tutorNumber" selected="selected">1人
+                            </option>
+                            <option value="2" name="tutorNumber">2人</option>
+                        </select>
+                    </div>
+                    <div id="onetutor">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td rowspan="4" style="vertical-align: middle">指导老师信息</td>
+                                <td colspan="2" style="vertical-align: middle">姓名</td>
+                                <td colspan="2" style="vertical-align: middle">学院</td>
+                                <td colspan="2" style="vertical-align: middle">职务</td>
+                                <td colspan="2" style="vertical-align: middle">联系电话</td>
+                                <td colspan="2" style="vertical-align: middle">学位</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="name">
+                                </td>
+
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="belongCollege">
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="post">
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="phone">
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="degree">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="twotutor" style="display: none;">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td rowspan="2" style="vertical-align: middle">指导老师一信息</td>
+                                <td colspan="2" style="vertical-align: middle">姓名</td>
+                                <td colspan="2" style="vertical-align: middle">学院</td>
+                                <td colspan="2" style="vertical-align: middle">职务</td>
+                                <td colspan="2" style="vertical-align: middle">联系电话</td>
+                                <td colspan="2" style="vertical-align: middle">学位</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="name">
+                                </td>
+
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="belongCollege">
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="post">
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="phone">
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="degree">
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td rowspan="2" style="vertical-align: middle">指导老师二信息</td>
+                                <td colspan="2" style="vertical-align: middle">姓名</td>
+                                <td colspan="2" style="vertical-align: middle">学院</td>
+                                <td colspan="2" style="vertical-align: middle">职务</td>
+                                <td colspan="2" style="vertical-align: middle">联系电话</td>
+                                <td colspan="2" style="vertical-align: middle">学位</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="name">
+                                </td>
+
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="belongCollege">
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="post">
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="phone">
+                                </td>
+                                <td colspan="2">
+                                    <input class="form-control inputcls required"
+                                           size="16" type="text" name="degree">
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div> -->
+
                 </div>
             </div>
 
@@ -201,6 +577,43 @@ desired effect
                     <h4>项目信息</h4>
                 </div>
                 <div class="card-body">
+                    <label for="projectName">项目名称：</label>
+                    <input type="text" name="name" id="projectName" style="height: 30px;" required value=""/>
+                    <br>
+                    <br>
+                    <div class="selects">
+                        <label>项目类别：</label>
+                        <select id="classification" name="classification" style="height: 35px">
+                            <option value="1" name="classification" selected="selected">创新训练项目
+                            </option>
+                            <option value="2">创业训练项目</option>
+                            <option value="3">创业实践项目</option>
+                        </select>
+                    </div>
+                    <br>
+                    <label for="introduce">项目简介:</label>
+                    <textarea class="form-control input-sm required" type="text" name="introduce" id="introduce"></textarea>
+                    <label for="background">项目背景:</label>
+                    <textarea class="form-control input-sm required" type="text" name="background" id="background"></textarea>
+                    <label for="marketAnalysis">项目市场分析:</label>
+                    <textarea class="form-control input-sm required" type="text" name="marketAnalysis" id="marketAnalysis"></textarea>
+
+                    <label for="technicalFactor">项目技术因素:</label>
+                    <textarea class="form-control input-sm required" type="text"name="technicalFactor" id="technicalFactor"></textarea>
+                    <label for="businessModel">商业模式:</label>
+                    <textarea class="form-control input-sm required" type="text" name="businessModel" id="businessModel"></textarea>
+                    <label for="financialAnalysis">财务分析:</label>
+                    <textarea class="form-control input-sm required" type="text"name="financialAnalysis" id="financialAnalysis"></textarea>
+                    <label for="riskAndConstraint">风险预测及制约因素:</label>
+                    <textarea class="form-control input-sm required" type="text" name="riskAndConstraint" id="riskAndConstraint"></textarea>
+                    <label for="planningAndVision">发展规划与创业愿景:</label>
+                    <textarea class="form-control input-sm required" type="text" name="planningAndVision" id="planningAndVision"></textarea>
+
+                    <label for="fundAndBudget">项目立项经费使用预算:</label>
+                    <textarea class="form-control input-sm required" type="text" name="fundAndBudget" id="fundAndBudget"></textarea>
+                    <label for="expectedResult">项目预期成果:</label>
+                    <textarea class="form-control input-sm required" type="text" name="expectedResult" id="expectedResult"></textarea>
+
 
                     <table class="table table-bordered" id="project">
                         <tbody>
@@ -234,6 +647,7 @@ desired effect
                         </tr>
                         </tbody>
                     </table>
+
                 </div>
             </div>
             <!--------------------------
@@ -242,6 +656,7 @@ desired effect
 
         </section>
         <!-- /.content -->
+    </from >
     </div>
     <!-- /.content-wrapper -->
     <div>
@@ -344,8 +759,12 @@ desired effect
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+
 <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.9/dist/vue.js"></script>
+
+<script src="../js/stuteaminformation.js"></script>
+
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
