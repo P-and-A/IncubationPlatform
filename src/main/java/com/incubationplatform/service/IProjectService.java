@@ -19,4 +19,6 @@ public interface IProjectService extends IService<Project> {
     ServerResponse reviewProject(Integer projectId, Integer adminId, String opinion, Integer status);
 
     public ServerResponse submitProject(Project project, List<String> team, List<String> teacherList);
+
+    public ServerResponse getProjectByStatus(Integer page,Integer status);
 }

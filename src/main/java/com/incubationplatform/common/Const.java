@@ -28,6 +28,15 @@ public class Const {
         public String getStatus() {
             return status;
         }
+
+        public static String getStatusByCode(int code){
+            for (ProjectStatus projectStatus : Const.ProjectStatus.values()){
+                if(projectStatus.code == code){
+                    return projectStatus.status;
+                }
+            }
+            return null;
+        }
     }
     public interface ProjectClassification{
         String EXCELLENT_INNOVATE = "创新训练";
