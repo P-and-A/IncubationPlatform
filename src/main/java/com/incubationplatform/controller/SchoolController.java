@@ -2,8 +2,10 @@ package com.incubationplatform.controller;
 
 import com.incubationplatform.common.ServerResponse;
 import com.incubationplatform.pojo.Admin;
+import com.incubationplatform.pojo.Student;
 import com.incubationplatform.service.IAdminService;
 import com.incubationplatform.service.IProjectService;
+import com.incubationplatform.service.IStudentService;
 import com.incubationplatform.vo.ProjectExcelVo;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
@@ -30,6 +32,8 @@ public class SchoolController {
     private IProjectService iProjectService;
     @Autowired
     private IAdminService adminService;
+    @Autowired
+    private IStudentService iStudentService;
 
 
     /**
@@ -71,6 +75,7 @@ public class SchoolController {
     }
 
     @RequestMapping("/{adminId}/query_admin")
+    @ResponseBody
     public ServerResponse queryAdmin(Integer page,Admin admin){
         return adminService.queryAdmin(admin,page);
     }
@@ -83,7 +88,8 @@ public class SchoolController {
      * @return
      */
     @RequestMapping("/{adminId}/get_project")
-    public ServerResponse getProject(Integer page,Integer status){
+    @ResponseBody
+    public ServerResponse getProject(@PathVariable(value = "adminId")String adminId, Integer page,Integer status){
         return iProjectService.getProjectByStatus(page, status);
     }
 
@@ -164,5 +170,56 @@ public class SchoolController {
         output.flush();
         output.close();
 
+    }
+
+
+    /**
+     * 学生管理-学生添加
+     * @param student
+     * @return
+     */
+    @PostMapping("/manage/student/add")
+    @ResponseBody
+    public ServerResponse addStudent(Student student){
+        student.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+        if (iStudentService.save(student)){
+            return ServerResponse.createBySuccessMessage("添加成功");
+        }else {
+            return ServerResponse.createByErrorMessage("添加失败");
+        }
+
+    }
+
+    /**
+     * 学生管理-学生删除
+     * @param studentId
+     * @return
+     */
+    @GetMapping("/manage/student/del")
+    @ResponseBody
+    public ServerResponse delStudent(String studentId){
+        if (iStudentService.removeById(studentId)){
+            return ServerResponse.createBySuccessMessage("删除成功");
+        }else {
+            return ServerResponse.createByErrorMessage("删除失败");
+        }
+    }
+
+    /**
+     * 学生管理-学生更新
+     * @param student
+     * @return
+     */
+    @PostMapping("/manage/student/update")
+    @ResponseBody
+    public ServerResponse updateStudent(Student student){
+        if (student.getId() == null){
+            return ServerResponse.createByErrorMessage("缺少id");
+        }
+        if (iStudentService.updateById(student)){
+            return ServerResponse.createBySuccessMessage("更新成功");
+        }else {
+            return ServerResponse.createByErrorMessage("更新失败");
+        }
     }
 }

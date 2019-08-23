@@ -9,8 +9,10 @@ public class Const {
     public enum ProjectStatus{
         CollegePass(10,"学院审核通过"),
         CollegeNoPass(11,"学院审核未通过"),
+        CollegeToAudit(12,"学院待审核"),
         SchoolPass(20,"学校审核通过"),
-        SchoolNoPass(21,"学校审核未通过");
+        SchoolNoPass(21,"学校审核未通过"),
+        SchoolToAudit(22,"学校待审核");
         //审核状态码
         private int code;
         //审核状态
