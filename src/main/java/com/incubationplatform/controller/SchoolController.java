@@ -1,5 +1,7 @@
 package com.incubationplatform.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.incubationplatform.common.ServerResponse;
 import com.incubationplatform.pojo.Admin;
 import com.incubationplatform.pojo.Student;
@@ -173,6 +175,21 @@ public class SchoolController {
     }
 
 
+
+    /**
+     * 学生管理-分页获取学生列表
+     * @param pageNum
+     * @return
+     */
+    @PostMapping("/manage/student/list")
+    @ResponseBody
+    public ServerResponse getStudents(Integer pageNum){
+        if (pageNum != null){
+            return ServerResponse.createBySuccess(iStudentService.page(new Page<Student>(pageNum,20)));
+        }
+        return ServerResponse.createByErrorMessage("参数错误");
+    }
+
     /**
      * 学生管理-学生添加
      * @param student
@@ -187,7 +204,6 @@ public class SchoolController {
         }else {
             return ServerResponse.createByErrorMessage("添加失败");
         }
-
     }
 
     /**
