@@ -21,4 +21,6 @@ public interface IProjectService extends IService<Project> {
     public ServerResponse submitProject(Project project, List<String> team, List<String> teacherList);
 
     public ServerResponse getProjectByStatus(Integer page,Integer status);
+
+    public ServerResponse getProjectDetail(String projectId);
 }

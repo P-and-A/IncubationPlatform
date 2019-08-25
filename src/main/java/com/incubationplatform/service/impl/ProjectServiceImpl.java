@@ -1,26 +1,25 @@
 package com.incubationplatform.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.segments.MergeSegments;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.incubationplatform.common.Const;
 import com.incubationplatform.common.ServerResponse;
-import com.incubationplatform.dao.AdminDao;
-import com.incubationplatform.dao.ProjectTecherDao;
-import com.incubationplatform.dao.StudentProjectDao;
+import com.incubationplatform.dao.*;
 import com.incubationplatform.pojo.*;
-import com.incubationplatform.dao.ProjectDao;
 import com.incubationplatform.service.IProjectService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.incubationplatform.vo.ProjectExcelVo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * <p>
@@ -43,6 +42,18 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectDao, Project> impleme
 
     @Autowired
     private ProjectTecherDao projectTecherDao;
+
+    @Autowired
+    private StudentDao studentDao;
+
+    @Autowired
+    private AwardDao awardDao;
+
+    @Autowired
+    private ProjectTecherDao projectTecherDao;
+
+    @Autowired
+    private TeacherDao teacherDao;
 
     public ServerResponse reviewProject(Integer projectId, Integer adminId, String opinion, Integer status){
         Project project = projectDao.selectById(projectId);
@@ -113,19 +124,42 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectDao, Project> impleme
         }
     }
 
+    public ServerResponse getProjectDetail(String projectId){
+        if (StringUtils.isBlank(projectId)){
+            return ServerResponse.createByErrorMessage("id无效");
+        }
+        Project project = projectDao.selectById(projectId);
+        if (project == null){
+            return ServerResponse.createByErrorMessage("项目不存在");
+        }
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("project",project);
+        List<Object> memberIdList = new ArrayList<>();
+        memberIdList = studentProjectDao.selectObjs(new QueryWrapper<StudentProject>().select("user_id").eq("product_id",project.getId()));
+        List<Student> studentList = new ArrayList<>();
+        List<Award> awardList = new ArrayList<>();
+
+        for (Object memberId : memberIdList){
+            Student student = studentDao.selectById((String)memberId);
+            awardList.addAll(awardDao.selectList(new QueryWrapper<Award>().eq("winner_id",(String)memberId)));
+            student.setPassword("");
+            studentList.add(student);
+        }
+        resultMap.put("members",studentList);
+        resultMap.put("awards",awardList);
+
+        List<Teacher> teacherList = new ArrayList<>();
+        List<ProjectTecher> teacherIdList = projectTecherDao.selectList(new QueryWrapper<ProjectTecher>()
+                                                                            .eq("project_id",project.getId()));
+        for (ProjectTecher projectTecher : teacherIdList){
+            teacherList.add(teacherDao.selectById(projectTecher.getTeacherId()));
+        }
+        resultMap.put("teachers",teacherList);
+        return ServerResponse.createBySuccess(resultMap);
+    }
 
 
 
-
-//    QueryWrapper queryWrapper=new QueryWrapper<>().eq("is_enable",1);
-//        queryWrapper.eq("is_enable",1);
-//        if (page!=null){
-//        IPage admins = adminDao.selectPage(new Page<>(page,10),queryWrapper);
-//        return ServerResponse.createBySuccess(admins);
-//    }else {
-//        IPage admins = adminDao.selectPage(new Page<>(1,10),queryWrapper);
-//        return ServerResponse.createBySuccess(admins);
-//    }
 
     private List<ProjectExcelVo> assembleProjectExcelVos(){
 

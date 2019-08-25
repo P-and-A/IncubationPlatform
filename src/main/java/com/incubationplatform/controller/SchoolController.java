@@ -9,6 +9,7 @@ import com.incubationplatform.service.IAdminService;
 import com.incubationplatform.service.IProjectService;
 import com.incubationplatform.service.IStudentService;
 import com.incubationplatform.vo.ProjectExcelVo;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,10 +90,20 @@ public class SchoolController {
      * @param status
      * @return
      */
-    @RequestMapping("/{adminId}/get_project")
+    @RequestMapping("/{adminId}/get_projects")
     @ResponseBody
-    public ServerResponse getProject(@PathVariable(value = "adminId")String adminId, Integer page,Integer status){
+    public ServerResponse getProjects(@PathVariable(value = "adminId")String adminId, Integer page,Integer status){
         return iProjectService.getProjectByStatus(page, status);
+    }
+
+    @RequestMapping("/{adminId}/project_detail")
+    @ResponseBody
+    public ServerResponse getProjectDetail(String projectId){
+
+        if (StringUtils.isBlank(projectId)){
+            return ServerResponse.createBySuccessMessage("参数错误");
+        }
+        return iProjectService.getProjectDetail(projectId);
     }
 
 
@@ -173,8 +184,6 @@ public class SchoolController {
         output.close();
 
     }
-
-
 
     /**
      * 学生管理-分页获取学生列表
