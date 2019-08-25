@@ -52,6 +52,9 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectDao, Project> impleme
     @Autowired
     private TeacherDao teacherDao;
 
+    @Autowired
+    private FileDao fileDao;
+
     public ServerResponse reviewProject(Integer projectId, Integer adminId, String opinion, Integer status){
         Project project = projectDao.selectById(projectId);
         Admin admin = adminDao.selectById(adminId);
@@ -152,6 +155,9 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectDao, Project> impleme
             teacherList.add(teacherDao.selectById(projectTecher.getTeacherId()));
         }
         resultMap.put("teachers",teacherList);
+
+        List<File> fileList = fileDao.selectList(new QueryWrapper<File>().eq("belong_id",project.getId()));
+        resultMap.put("files",fileList);
         return ServerResponse.createBySuccess(resultMap);
     }
 
