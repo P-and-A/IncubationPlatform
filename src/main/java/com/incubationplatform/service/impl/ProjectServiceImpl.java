@@ -50,9 +50,6 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectDao, Project> impleme
     private AwardDao awardDao;
 
     @Autowired
-    private ProjectTecherDao projectTecherDao;
-
-    @Autowired
     private TeacherDao teacherDao;
 
     public ServerResponse reviewProject(Integer projectId, Integer adminId, String opinion, Integer status){
