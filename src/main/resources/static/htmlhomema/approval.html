@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
     <style>
         .content {
             overflow-y: auto;
-            width: calc(100% - var(--left-nav));
+            width: calc(100% - var(--left-nav) + 80px);
             height: 100%;
             right: 0;
             position: absolute;
@@ -110,7 +110,7 @@
         .left-content {
             height: calc(100vh - var(--top-nav));
             overflow: hidden;
-            width: var(--left-nav);
+            width: calc(var(--left-nav) - 80px);
             position: absolute;
             background-color: #EAEDF1;
         }
@@ -153,7 +153,12 @@
 <body>
     <header>
         <section class="top-navigation">
-            这是顶部导航栏
+            <div class="top-logo">
+                <b>首页管理</b>
+            </div>
+            <div class="top-menu">
+            返回
+            </div>
         </section>
         <section class="left-navigation">
             <ul>
@@ -297,12 +302,12 @@
 </body>
 
 <script>
-    var baseUrl = ""
-        console.log(window.location.href)
+    var baseUrl = "";
+        console.log(window.location.href);
     var app = new Vue({
         el: "#app",
         data: {
-            selectTab: [false, false, false],
+            selectTab: [true, false, false],
             rightIndex:0,
             selectList: ["创新训练","创业训练","创业实践"],
             pagination: {
@@ -345,7 +350,6 @@
                     if (index == currentIndex) {
                         this.selectTab.splice(index, 1, true);
                         if (currentIndex == 0) {
-                            console.log("111")
                             this.approvalList = [{ "id": "123456780", "sort": 1, "name": "这是个虚拟项目", "grade": "国家级", "students": "黄泳棋", "createTime": "2104-11-11" },
                             { "id": "123456780", "sort": 2, "name": "这是个虚拟项目", "grade": "国家级", "students": "黄泳棋", "createTime": "2104-11-11" },
                             { "id": "123456780", "sort": 3, "name": "这是个虚拟项目1", "grade": "国家级", "students": "黄泳棋", "createTime": "2104-11-11" },
@@ -417,7 +421,7 @@
             selectNew: function (index) {
                 let select = this.selectList[index];
                 select.sort = this.approvalList.length + 1;
-                this.approvalList.push(select)
+                this.approvalList.push(select);
                 $('.bd-example-modal-lg').modal("hide");
             },
             // 上一页
@@ -451,6 +455,25 @@
                     paramList[param[0]] = param[1]
                 }
                 return paramList;
+            }
+
+
+            // 获取数据列表
+            setServiceData: function (current, size, type) {
+                let that = this;
+                $.ajax({
+                    url: baseUrl + "get_admin",
+                    method: 'GET',
+                    data: {
+                        current: current,
+                    },
+                    success: function (response) {
+                        let page = response.data;
+                        that.dataList = page.records;
+                        that.pagination.totalData = page.total;
+                        that.pagination.totalPage = page.pages;
+                    }
+                })
             }
         },
         computed: {
@@ -507,7 +530,6 @@
                     }
                 }
             }
-
         }
     })
 </script>

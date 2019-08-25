@@ -30,7 +30,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <![endif]-->
-
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- Google Font -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -61,26 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         }
     </style>
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -166,9 +147,10 @@ desired effect
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"  ><a href="itemsadminn.html"><i class="fa fa-circle-o"></i> 立项项目</a></li>
+                    <li><a href="itemsadminn.html"><i class="fa fa-circle-o"></i> 立项项目</a></li>
+                    <li class="active"><a href="itemsadminn.html"><i class="fa fa-circle-o"></i> 立项审核</a></li>
                     <li><a href="itemsoveradminn.html"><i class="fa fa-circle-o"></i>  结项项目</a></li>
-
+                    <li><a href="itemsadminn.html"><i class="fa fa-circle-o"></i> 结项审核</a></li>
                 </ul>
             <li    ><a href="inform.html"><i class="fa fa-link"></i> <span>通知通告</span></a></li>
             <li ><a href="pswmofidyy.html"><i class="fa fa-link"></i> <span>修改密码</span></a></li>
@@ -187,44 +169,46 @@ desired effect
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="ziti">
-                项目管理/结项审核
+                项目管理/立项审核
 
             </h1>
             <h5>
-                结项项目审核
+                立项项目审核
             </h5>
             <hr>
 
         </section>
 
         <!-- Main content -->
-        <section class="content container-fluid" style="background-color: white">
+        <section class="content container-fluid" style="background-color: white" id="vue">
             <div class="box-header">
-                <input type="radio" name="status" id="next"><label for="next">待审核</label> &nbsp; <input type="radio" name="status" id="pass"><label for="pass">已通过</label>  &nbsp; <input type="radio" name="status" id="notPass"><label for="notPass">未通过</label>
+                <input type="radio" name="status" value="12" id="next" name="class" v-model="selectClass"><label for="next">待审核</label> &nbsp;
+                <input type="radio" name="status" id="pass" value="10" name="class" v-model="selectClass"><label for="pass">已通过</label>  &nbsp;
+                <input type="radio" name="status" id="notPass" value="11" name="class" v-model="selectClass"><label for="notPass">未通过</label>
 
 
-                <!--<div class="box-tools ">-->
-                    <!--<div class="input-group input-group-sm" style="width: 300px;">-->
-                        <!--<input type="text" name="table_search" class="form-control pull-right" placeholder="输入内容">-->
+                <div class="box-tools ">
+                    <div class="input-group input-group-sm" style="width: 300px;">
+                        <input type="text" name="table_search" class="form-control pull-right" placeholder="输入内容">
 
 
-                        <!--<div class="input-group-btn">-->
-                            <!--<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>-->
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 
-                        <!--</div>-->
-                        <!--<div class="input-group-btn">-->
-                            <!--<button type="button" class="btn btn-default"><i class="fa fa-fw fa-plus-square-o"></i>增加用户</button>-->
+                        </div>
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default"><i class="fa fa-fw fa-plus-square-o"></i>增加用户</button>
 
-                        <!--</div>-->
+                        </div>
 
-                        <!--<div class="input-group-btn">-->
-                            <!--<button type="button" class="btn btn-default"> <i class="fa fa-fw fa-trash-o"></i>删除</button>-->
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default"> <i class="fa fa-fw fa-trash-o"></i>删除</button>
 
-                        <!--</div>-->
+                        </div>
 
-                    <!--</div>-->
+                    </div>
 
-                <!--</div>-->
+                </div>
             </div>
             <div class="table">
                 <!-- <div class="text-right">
@@ -242,19 +226,38 @@ desired effect
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(item,index) in approvalList">
+                    <tr v-for="(item,index) in dataList">
                         <!-- <td v-text="item.sort"></td> -->
                         <td v-text="item.name">创序软件工作室</td>
                         <td v-text="item.status">结项审核</td>
-                        <td v-text="item.students">黄泳棋</td>
-                        <td v-text="item.createTime">2018.11.10</td>
                         <td>
-                            <button class="primary-button" @click="topProject(index)" onclick="javascript:window.location.href='审核详情.html'">查看</button>
+                            <span v-for="student in item.person">{{student}}&nbsp;</span>
+                        </td>
+                        <td v-text="item.time">2018.11.10</td>
+                        <td>
+                            <button class="primary-button" @click="toDetail(index)">查看</button>
                             <!-- <button class="dangerous-button" data-toggle="modal" data-target="#myModal">移除</button> -->
                         </td>
                     </tr>
                     </tbody>
                 </table>
+                <nav aria-label="Page navigation" style="margin-top: 50px;display: flex;justify-content: center">
+                    <ul class="pagination">
+                        <li @click="previous">
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li v-for="(item,index) in getPageList" @click="selectPage(item)" v-bind:class="{'active': isCurrentPage(item)}">
+                            <a href="#" v-text="item"></a>
+                        </li>
+                        <li @click="next">
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
             <!--------------------------
               | Your Page Content Here |
@@ -373,21 +376,130 @@ desired effect
 <script>
     window.onload=function (ev) {
         var app=new Vue({
-            el:'#box',
+            el:'#vue',
             data:{
-                msg:'welcome'
+                pagination: {
+                    currentPage: 1,
+                    totalPage: 1,
+                    size: 10,
+                    totalData: 10,
+                    showPages: 5
+                },
+                dataList:[{id:"123",name:"创序软件工作室",status:"等待审核",person:["黄永琪","黄永棋"],time:"2019-11-1"}],
+                selectClass:12
             },
             created:function(){
-                console.log('实例已经创建,msg变量还未渲染到模板')
+                this.setServiceData(this.pagination.currentPage,this.selectClass())
             },
-            mounted:function(){
-                console.log('已经挂载到模板上:msg变量渲染到模板')
+            watch:{
+              selectClass:function (val) {
+                  this.pagination.currentPage = 1
+                  this.setServiceData(this.pagination.currentPage,val)
+              }
             },
-            updated:function(){
-                console.log('实例更新啦')
+            methods:{
+                toDetail:function (index) {
+                    let id=this.dataList[index].id;
+                    window.location.href='审核详情.html?id='+id
+                },
+                // 上一页
+                previous: function () {
+                    let currentPage = parseInt(this.pagination.currentPage)
+                    if (currentPage > 1) {
+                        this.pagination.currentPage = currentPage - 1
+                        this.setServiceData(this.pagination.currentPage,this.selectClass())
+                    }
+
+                },
+                // 下一页
+                next: function () {
+                    let currentPage = parseInt(this.pagination.currentPage)
+                    let totalPage = parseInt(this.pagination.totalPage)
+                    if (currentPage < totalPage) {
+                        this.pagination.currentPage = currentPage + 1
+                        this.setServiceData(this.pagination.currentPage,this.selectClass())
+                    }
+                },
+                // 页数选择
+                selectPage: function (currentPage) {
+                    console.log(currentPage)
+                    this.pagination.currentPage = currentPage
+                    this.setServiceData(this.pagination.currentPage,this.selectClass())
+                },
+
+                // 获取数据列表
+                setServiceData: function (current, status) {
+                    let that = this;
+                    $.ajax({
+                        url: baseUrl + "get_project",
+                        method: 'GET',
+                        data: {
+                            page: current,
+                            status:status
+                        },
+                        success: function (response) {
+                            let page = response.data;
+                            that.dataList = page.records;
+                            that.pagination.totalData = page.total;
+                            that.pagination.totalPage = page.pages;
+                        }
+                    })
+                }
             },
-            destroyed:function(){
-                console.log('销毁啦')
+            computed: {
+                // 获取特定的列表页
+                getPageList: function () {
+                    let currentPage = parseInt(this.pagination.currentPage)
+                    let totalPage = this.pagination.totalPage;
+                    let pages = Math.floor((this.pagination.showPages) / 2)
+                    let leftSurplus = 0;
+                    let rightSurplus = 0;
+                    // 判断左边页数是否越界
+                    if (currentPage - pages - 1 < 0) {
+                        rightSurplus = Math.abs(currentPage - pages - 1)
+                    }
+                    //判断右边页数是否越界
+                    if (pages % 2 == 0) {
+                        if (currentPage + pages > totalPage) {
+                            leftSurplus = Math.abs(currentPage + pages - totalPage)
+                        }
+                    } else {
+                        if (currentPage + pages + 1 > totalPage) {
+                            leftSurplus = Math.abs(currentPage + pages + 1 - totalPage)
+                        }
+                    }
+                    let currentList = []
+                    for (let index = pages + leftSurplus; index > 0; index--) {
+                        if (currentPage - index > 0) {
+                            currentList.push(currentPage - index)
+                        }
+                    }
+                    currentList.push(currentPage);
+                    if (this.pagination.showPages % 2 == 0) {
+                        for (let index = 1; index < pages - 1 + rightSurplus; index++) {
+                            if (currentPage + index <= totalPage) {
+                                currentList.push(currentPage + index)
+                            }
+                        }
+                    } else {
+                        for (let index = 1; index <= pages + rightSurplus; index++) {
+                            if (currentPage + index <= totalPage) {
+                                currentList.push(currentPage + index)
+                            }
+                        }
+                    }
+                    return currentList;
+                },
+                // 判断是否当前页
+                isCurrentPage: function () {
+                    return function (index) {
+                        if (index == this.pagination.currentPage) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                }
             }
         });
     }
