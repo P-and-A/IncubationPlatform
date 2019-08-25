@@ -33,7 +33,7 @@ public class Sort extends Model<Sort> {
     /**
      * 顺序 1-10 
      */
-    private Integer order;
+    private Integer order_num;
 
 
     public Integer getId() {
@@ -60,12 +60,12 @@ public class Sort extends Model<Sort> {
         this.classification = classification;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getOrder_num() {
+        return order_num;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrder_num(Integer order_num) {
+        this.order_num = order_num;
     }
 
     public static final String ID = "id";
@@ -74,7 +74,7 @@ public class Sort extends Model<Sort> {
 
     public static final String CLASSIFICATION = "classification";
 
-    public static final String ORDER = "order";
+    public static final String ORDER = "order_num";
 
     @Override
     protected Serializable pkVal() {
@@ -87,7 +87,7 @@ public class Sort extends Model<Sort> {
         "id=" + id +
         ", itemId=" + itemId +
         ", classification=" + classification +
-        ", order=" + order +
+        ", order_num=" + order_num +
         "}";
     }
 }

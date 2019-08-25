@@ -1,8 +1,6 @@
 package com.incubationplatform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.google.common.collect.Lists;
-import com.incubationplatform.common.Const;
 import com.incubationplatform.common.ServerResponse;
 import com.incubationplatform.pojo.Sort;
 import com.incubationplatform.dao.SortDao;
@@ -41,14 +39,14 @@ public class SortServiceImpl extends ServiceImpl<SortDao, Sort> implements ISort
         if (sort == null){
             return ServerResponse.createByError();
         }
-        List<Sort> sortList = sortDao.selectList(new QueryWrapper<Sort>().orderByDesc("order"));
+        List<Sort> sortList = sortDao.selectList(new QueryWrapper<Sort>().orderByDesc("order_num"));
         for (Sort item : sortList){
-            if (item.getOrder() > sort.getOrder()){
-                item.setOrder(item.getId()-1);
-            }else if (item.getOrder() < sort.getOrder()){
-                item.setOrder(item.getOrder()+1);
+            if (item.getOrder_num() > sort.getOrder_num()){
+                item.setOrder_num(item.getId()-1);
+            }else if (item.getOrder_num() < sort.getOrder_num()){
+                item.setOrder_num(item.getOrder_num()+1);
             }else {
-                item.setOrder(1);
+                item.setOrder_num(1);
             }
             sortDao.updateById(item);
         }
@@ -60,7 +58,7 @@ public class SortServiceImpl extends ServiceImpl<SortDao, Sort> implements ISort
         if (num == 10){
             return ServerResponse.createByErrorMessage("增加失败");
         }
-        sort.setOrder(num+1);
+        sort.setOrder_num(num+1);
         int code = sortDao.insert(sort);
         if (code > 0){
             return ServerResponse.createBySuccess();
@@ -73,12 +71,12 @@ public class SortServiceImpl extends ServiceImpl<SortDao, Sort> implements ISort
         if (sort == null){
             return ServerResponse.createByError();
         }
-        List<Sort> sortList = sortDao.selectList(new QueryWrapper<Sort>().eq("ckassification",classification).orderByDesc("order"));
+        List<Sort> sortList = sortDao.selectList(new QueryWrapper<Sort>().eq("classification",classification).orderByDesc("order_num"));
         for (Sort item : sortList){
-            if (item.getOrder() > sort.getOrder()){
-                item.setOrder(item.getId()-1);
+            if (item.getOrder_num() > sort.getOrder_num()){
+                item.setOrder_num(item.getId()-1);
                 sortDao.updateById(item);
-            }else if (item.getOrder() == sort.getOrder()){
+            }else if (item.getOrder_num() == sort.getOrder_num()){
                 sortDao.deleteById(item.getId());
             }
         }
@@ -86,7 +84,7 @@ public class SortServiceImpl extends ServiceImpl<SortDao, Sort> implements ISort
     }
 
     public ServerResponse getSorts(String classification){
-        List<Sort> sortList = sortDao.selectList(new QueryWrapper<Sort>().eq("ckassification",classification).orderByDesc("order"));
+        List<Sort> sortList = sortDao.selectList(new QueryWrapper<Sort>().eq("classification",classification).orderByDesc("order_num"));
         return ServerResponse.createBySuccess(sortList);
     }
 }

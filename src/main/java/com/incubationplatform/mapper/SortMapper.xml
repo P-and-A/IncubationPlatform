@@ -7,12 +7,12 @@
         <id column="id" property="id" />
         <result column="item_id" property="itemId" />
         <result column="classification" property="classification" />
-        <result column="order" property="order" />
+        <result column="order_num" property="order_num" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, item_id, classification, order
+        id, item_id, classification, order_num
     </sql>
 
 </mapper>

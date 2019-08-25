@@ -307,7 +307,7 @@ CREATE TABLE `sort` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` varchar(255) NOT NULL COMMENT '分类的id',
   `classification` varchar(255) DEFAULT NULL COMMENT '分类类别',
-  `order` int(11) DEFAULT NULL COMMENT '顺序 1-10 ',
+  `order_num` int(11) DEFAULT NULL COMMENT '顺序 1-10 ',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
