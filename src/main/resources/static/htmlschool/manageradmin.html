@@ -126,8 +126,8 @@ desired effect
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="studentadmin.html"><i class="fa fa-circle-o"></i> 学生管理</a></li>
-                    <li><a href="teacheradmin.html"><i class="fa fa-circle-o"></i> 教师管理</a></li>
-                    <li class="active"><a href="manageradmin.html"><i class="fa fa-circle-o"></i> 管理员</a></li>
+                    <!--<li><a href="teacheradmin.html"><i class="fa fa-circle-o"></i>  教师管理</a></li>-->
+                    <li class="active"><a href="manageradmin.html"><i class="fa fa-circle-o"></i>  管理员</a></li>
 
                 </ul>
                 <!-- Optionally, you can add icons to the links -->
@@ -139,12 +139,13 @@ desired effect
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="itemsadminn.html"><i class="fa fa-circle-o"></i> 立项项目</a></li>
-                    <li><a href="itemsoveradminn.html"><i class="fa fa-circle-o"></i> 结项项目</a></li>
-
+                    <!--<li><a href="itemsadminn.html"><i class="fa fa-circle-o"></i> 立项项目</a></li>-->
+                    <li><a href="立项审核.html"><i class="fa fa-circle-o"></i> 立项审核</a></li>
+                    <!--<li><a href="itemsoveradminn.html"><i class="fa fa-circle-o"></i>  结项项目</a></li>-->
+                    <li><a href="结项审核.html"><i class="fa fa-circle-o"></i> 结项审核</a></li>
                 </ul>
-            <li><a href="inform.html"><i class="fa fa-link"></i> <span>通知通告</span></a></li>
-            <li><a href="pswmofidyy.html"><i class="fa fa-link"></i> <span>修改密码</span></a></li>
+            <li    ><a href="inform.html"><i class="fa fa-link"></i> <span>通知通告</span></a></li>
+            <li ><a href="pswmofidyy.html"><i class="fa fa-link"></i> <span>修改密码</span></a></li>
 
             </li>
 
@@ -418,6 +419,7 @@ desired effect
      user experience. -->
 </body>
 <script>
+    var baseUrl='/school/1';
     window.onload = function (ev) {
         new Vue({
             el: '#vue',

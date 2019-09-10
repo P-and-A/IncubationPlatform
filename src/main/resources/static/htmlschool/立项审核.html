@@ -134,7 +134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
                 <ul class="treeview-menu">
                     <li   ><a href="studentadmin.html"><i class="fa fa-circle-o"></i> 学生管理</a></li>
-                    <li><a href="teacheradmin.html"><i class="fa fa-circle-o"></i>  教师管理</a></li>
+                    <!--<li><a href="teacheradmin.html"><i class="fa fa-circle-o"></i>  教师管理</a></li>-->
                     <li><a href="manageradmin.html"><i class="fa fa-circle-o"></i>  管理员</a></li>
 
                 </ul>
@@ -147,10 +147,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="itemsadminn.html"><i class="fa fa-circle-o"></i> 立项项目</a></li>
-                    <li class="active"><a href="itemsadminn.html"><i class="fa fa-circle-o"></i> 立项审核</a></li>
-                    <li><a href="itemsoveradminn.html"><i class="fa fa-circle-o"></i>  结项项目</a></li>
-                    <li><a href="itemsadminn.html"><i class="fa fa-circle-o"></i> 结项审核</a></li>
+                    <!--<li><a href="itemsadminn.html"><i class="fa fa-circle-o"></i> 立项项目</a></li>-->
+                    <li class="active"><a href="立项审核.html"><i class="fa fa-circle-o"></i> 立项审核</a></li>
+                    <!--<li><a href="itemsoveradminn.html"><i class="fa fa-circle-o"></i>  结项项目</a></li>-->
+                    <li><a href="结项审核.html"><i class="fa fa-circle-o"></i> 结项审核</a></li>
                 </ul>
             <li    ><a href="inform.html"><i class="fa fa-link"></i> <span>通知通告</span></a></li>
             <li ><a href="pswmofidyy.html"><i class="fa fa-link"></i> <span>修改密码</span></a></li>
@@ -374,6 +374,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
      user experience. -->
 </body>
 <script>
+    var baseUrl=''
     window.onload=function (ev) {
         var app=new Vue({
             el:'#vue',
@@ -427,11 +428,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     this.setServiceData(this.pagination.currentPage,this.selectClass())
                 },
 
+                analysisUrl: function () {
+                    let url = window.location.href;
+                    let params = url.split("?")[1].split("&")
+                    let paramList = {}
+                    for (let index = 0; index < params.length; index++) {
+                        param = params[index].split("=")
+                        paramList[param[0]] = param[1]
+                    }
+                    return paramList;
+                }
+
                 // 获取数据列表
                 setServiceData: function (current, status) {
                     let that = this;
                     $.ajax({
-                        url: baseUrl + "get_project",
+                        url: baseUrl + '/school/{adminId}/project_detail',
                         method: 'GET',
                         data: {
                             page: current,

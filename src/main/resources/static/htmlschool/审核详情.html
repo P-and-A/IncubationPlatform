@@ -151,9 +151,9 @@ desired effect
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="studentadmin.html"><i class="fa fa-circle-o"></i> 学生管理</a></li>
-                    <li><a href="teacheradmin.html"><i class="fa fa-circle-o"></i> 教师管理</a></li>
-                    <li><a href="manageradmin.html"><i class="fa fa-circle-o"></i> 管理员</a></li>
+                    <li   ><a href="studentadmin.html"><i class="fa fa-circle-o"></i> 学生管理</a></li>
+                    <!--<li><a href="teacheradmin.html"><i class="fa fa-circle-o"></i>  教师管理</a></li>-->
+                    <li><a href="manageradmin.html"><i class="fa fa-circle-o"></i>  管理员</a></li>
 
                 </ul>
                 <!-- Optionally, you can add icons to the links -->
@@ -165,12 +165,13 @@ desired effect
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="itemsadminn.html"><i class="fa fa-circle-o"></i> 立项项目</a></li>
-                    <li><a href="itemsoveradminn.html"><i class="fa fa-circle-o"></i> 结项项目</a></li>
-
+                    <!--<li><a href="itemsadminn.html"><i class="fa fa-circle-o"></i> 立项项目</a></li>-->
+                    <li class="active"><a href="立项审核.html"><i class="fa fa-circle-o"></i> 立项审核</a></li>
+                    <!--<li><a href="itemsoveradminn.html"><i class="fa fa-circle-o"></i>  结项项目</a></li>-->
+                    <li><a href="结项审核.html"><i class="fa fa-circle-o"></i> 结项审核</a></li>
                 </ul>
-            <li><a href="inform.html"><i class="fa fa-link"></i> <span>通知通告</span></a></li>
-            <li><a href="pswmofidyy.html"><i class="fa fa-link"></i> <span>修改密码</span></a></li>
+            <li    ><a href="inform.html"><i class="fa fa-link"></i> <span>通知通告</span></a></li>
+            <li ><a href="pswmofidyy.html"><i class="fa fa-link"></i> <span>修改密码</span></a></li>
 
             </li>
 
@@ -208,14 +209,14 @@ desired effect
                             <div>
                                 <!--<input class="form-control inputcls" size="16" type="text"-->
                                 <!--value="" id="inputer" name="inputer" placeholder="项目名称">-->
-                                <span v-text="data.name"></span>
+                                <span v-text="data.project.name"></span>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td style="vertical-align: middle">项目类型</td>
                         <td colspan="6">
-                            <span v-text="data.classification"></span>
+                            <span v-text="data.project.classification"></span>
                         </td>
 
 
@@ -381,26 +382,35 @@ desired effect
                 </div>
                 <div style="width: 100%;padding: 10px;border:1px solid #999999eb;color: gray;border-top: none">
                     <h4>申请人承诺</h4>
-                    <div style="" v-text="data.applicantPromiseDetail"></div>
+                    <div style="" v-text="data.project.applicantPromiseDetail"></div>
                     <div style="text-align: right;margin-top: 50px;">
-                        <span v-text="data.applicantPromiseHandler"></span>
+                        <span v-text="data.project.applicantPromiseHandler"></span>
                         <br>
-                        <span v-text="data.applicantPromisetHandingTime"></span>
+                        <span v-text="data.project.applicantPromisetHandingTime"></span>
                     </div>
                 </div>
                 <div style="width: 100%;padding: 10px;border:1px solid #999999eb;color: gray;border-top: none">
                     <h4>学院立项意见</h4>
-                    <div style="" v-text="data.universityOpinionDetail"></div>
+                    <div style="" v-text="data.project.universityOpinionDetail"></div>
                     <div style="text-align: right;margin-top: 50px;">
-                        <span v-text="data.collegeOpinionDetail">郭木凯</span>
+                        <span v-text="data.project.collegeOpinionDetail">郭木凯</span>
                         <br>
-                        <span v-text="data.collegeOpinionHandlerTime">2016-8-8</span>
+                        <span v-text="data.project.collegeOpinionHandlerTime">2016-8-8</span>
                     </div>
                 </div>
                 <div style="width: 100%;padding: 10px;border:1px solid #999999eb;color: gray;border-top: none">
                     <h4>学校立项意见</h4>
                     <div style="">
-                        <textarea style="width:100%;height: 200px;" v-model="result"></textarea>
+
+                        <textarea  style="width:100%;height: 200px;" v-model="result" v-if="isNext"></textarea>
+                        <template v-else>
+                        <div style="" v-text="data.project.universityOpinionDetail"></div>
+                        <div style="text-align: right;margin-top: 50px;">
+                            <span v-text="data.project.collegeOpinionDetail">郭木凯</span>
+                            <br>
+                            <span v-text="data.project.collegeOpinionHandlerTime">2016-8-8</span>
+                        </div>
+                        </template>
                     </div>
                     <!--<div style="text-align: right;margin-top: 50px;">-->
                     <!--<span>郭木凯</span>-->
@@ -537,6 +547,7 @@ desired effect
      user experience. -->
 </body>
 <script>
+    var baseUrl='/school/11/';
     window.onload = function (ev) {
         var app = new Vue({
             el: '#vue',
@@ -556,35 +567,38 @@ desired effect
                     expectedResult: '项目预期成果',
                 },
                 data: {
-                    id: "123",
-                    matchId: "11",
-                    classification: "创业实践",
-                    grade: '国家级',
-                    introduce: '这是项目简介',
-                    background: '这是项目背景',
-                    advantage: '这是项目优势',
-                    marketAnalysis: '这是项目市场分析',
-                    technicalFactor: '这是项目技术因素',
-                    businessModel: '这是项目商业模式',
-                    financialAnalysis: '这是项目财务分析',
-                    riskAndConstraint: '这是风险预测及制约因素',
-                    planningAndVision: '这是发展规划和创业远景',
-                    fundAndBudget: '项目立项经费使用预算',
-                    expectedResult: '项目预期成果',
-                    collegeOpinionDetail: '学院立项意见详情',
-                    collegePostOpinionDetail: '学院结项意见详情',
-                    collegeOpinionHandler: '学院立项意见处理人',
-                    collegePostOpinionHandler: '学院结项意见处理人',
-                    collegeOpinionHandlerTime: '学院立项意见签名时间',
-                    collegePostOpinionHandlerTime: '学院结项意见签名时间',
-                    applicantPromiseDetail: '申请人承诺详情',
-                    applicantPromiseHandler: '申请人承诺处理者',
-                    applicantPromisetHandingTime: '申请人承诺处理时间',
-                    universityOpinionDetail: '学校立项意见详情',
-                    universityPostOpinionHandingTime: '学校结项意见处理时间',
-                    name: "创序软件工作室",
-                    status: "等待审核",
-                    person: [{
+                    project:{
+                        id: "123",
+                        matchId: "11",
+                        classification: "创业实践",
+                        grade: '国家级',
+                        introduce: '这是项目简介',
+                        background: '这是项目背景',
+                        advantage: '这是项目优势',
+                        marketAnalysis: '这是项目市场分析',
+                        technicalFactor: '这是项目技术因素',
+                        businessModel: '这是项目商业模式',
+                        financialAnalysis: '这是项目财务分析',
+                        riskAndConstraint: '这是风险预测及制约因素',
+                        planningAndVision: '这是发展规划和创业远景',
+                        fundAndBudget: '项目立项经费使用预算',
+                        expectedResult: '项目预期成果',
+                        collegeOpinionDetail: '学院立项意见详情',
+                        collegePostOpinionDetail: '学院结项意见详情',
+                        collegeOpinionHandler: '学院立项意见处理人',
+                        collegePostOpinionHandler: '学院结项意见处理人',
+                        collegeOpinionHandlerTime: '学院立项意见签名时间',
+                        collegePostOpinionHandlerTime: '学院结项意见签名时间',
+                        applicantPromiseDetail: '申请人承诺详情',
+                        applicantPromiseHandler: '申请人承诺处理者',
+                        applicantPromisetHandingTime: '申请人承诺处理时间',
+                        universityOpinionDetail: '学校立项意见详情',
+                        universityPostOpinionHandingTime: '学校结项意见处理时间',
+                        name: "创序软件工作室",
+                        status: "22",
+                        time: "2019-11-1"
+                    },
+                    members: [{
                         name: "黄永琪",
                         specialty: '软件工程',
                         grade: '2016',
@@ -635,38 +649,43 @@ desired effect
                             post: '讲师',
                             degree: '学士',
                         }],
-                    time: "2019-11-1"
-                },
-                selectClass: '待审核'
+                    files:[]
+                }
             },
             created: function () {
-                console.log('实例已经创建,msg变量还未渲染到模板')
-            },
-            watch: {
-                selectClass: function (val) {
-                    console.log(val)
+                let that = this;
+                let paramList = this.analysisUrl();
+                if (paramList["id"]!==0) {
+                    $.ajax({
+                        url: baseUrl + "project_detail",
+                        method: 'GET',
+                        data: {
+                            projectId:paramList["id"]
+                        },
+                        success: function (response) {
+                            that.data = response.data;
+                        }
+                    })
                 }
             },
             methods: {
-                toDetail: function (index) {
-                    let id = this.dataList[index].id;
-                    window.location.href = '审核详情.html?id=' + id
-                },
                 getContent(key) {
-                    return this.data[key];
+                    return this.data.project[key];
                 },
                 commitResult(select) {
                     if (this.result === '') {
                         alert("请输入意见");
                     } else {
-
+                        $.ajax({
+                            url:baseUrl + '',
+                        })
                     }
                 }
             },
             computed: {
                 getMain() {
                     return function (isMain) {
-                        let tempArr = this.data.person;
+                        let tempArr = this.data.members;
                         let newArr = [];
                         if (isMain) {
                             for (let i = 0; i < tempArr.length; i++) {
@@ -682,6 +701,16 @@ desired effect
                             }
                         }
                         return newArr;
+                    }
+                },
+                isNext(){
+                    return function () {
+                        let data=this.data;
+                        if ('22'.eq(data.status)) {
+                            return true;
+                        }else {
+                            return false;
+                        }
                     }
                 }
             }

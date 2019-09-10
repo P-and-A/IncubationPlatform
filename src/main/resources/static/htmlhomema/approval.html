@@ -344,7 +344,7 @@
         methods: {
             // 改变右侧导航栏
             changeTab: function (currentIndex) {
-                console.log(currentIndex)
+                console.log(currentIndex);
                 this.rightIndex=currentIndex;
                 for (let index = 0; index < this.selectTab.length; index++) {
                     if (index == currentIndex) {
@@ -455,17 +455,17 @@
                     paramList[param[0]] = param[1]
                 }
                 return paramList;
-            }
+            },
 
 
-            // 获取数据列表
-            setServiceData: function (current, size, type) {
+            // 获取排序数据列表
+            setSortServiceData: function (type) {
                 let that = this;
                 $.ajax({
-                    url: baseUrl + "get_admin",
+                    url: baseUrl + "/sort/get",
                     method: 'GET',
                     data: {
-                        current: current,
+                        classification: type,
                     },
                     success: function (response) {
                         let page = response.data;
@@ -474,7 +474,25 @@
                         that.pagination.totalPage = page.pages;
                     }
                 })
-            }
+            },
+
+            //获取待排序的数据列表
+            setServiceData: function (current,size,type) {
+                let that = this;
+                $.ajax({
+                    url: baseUrl + "/sort/get",
+                    method: 'GET',
+                    data: {
+                        classification: type,
+                    },
+                    success: function (response) {
+                        let page = response.data;
+                        that.dataList = page.records;
+                        that.pagination.totalData = page.total;
+                        that.pagination.totalPage = page.pages;
+                    }
+                })
+            },
         },
         computed: {
             // 获取特定的列表页
